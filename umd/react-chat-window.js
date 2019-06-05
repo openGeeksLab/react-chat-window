@@ -6030,6 +6030,7 @@ var UserInput_UserInput = function (_Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_SendIcon, { onClick: this._submitText.bind(this) })
       );
     }
+    return null;
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: 'sc-user-input--button' },

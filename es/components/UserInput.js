@@ -125,6 +125,7 @@ var UserInput = function (_Component) {
         React.createElement(SendIcon, { onClick: this._submitText.bind(this) })
       );
     }
+    return null;
     return React.createElement(
       'div',
       { className: 'sc-user-input--button' },
