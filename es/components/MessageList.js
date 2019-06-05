@@ -23,13 +23,18 @@ var MessageList = function (_Component) {
   MessageList.prototype.render = function render() {
     var _this2 = this;
 
+    var recipientAvatar = this.props.recipientAvatar;
+
     return React.createElement(
       'div',
       { className: 'sc-message-list', ref: function ref(el) {
           return _this2.scrollList = el;
         } },
       this.props.messages.map(function (message, i) {
-        return React.createElement(Message, { message: message, key: i });
+        return React.createElement(Message, {
+          recipientAvatar: recipientAvatar,
+          message: message,
+          key: i });
       })
     );
   };

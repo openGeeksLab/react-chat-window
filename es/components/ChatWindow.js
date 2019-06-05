@@ -29,8 +29,11 @@ var ChatWindow = function (_Component) {
 
   ChatWindow.prototype.render = function render() {
     //TODO: default avatar
-    var _props$displayHeader = this.props.displayHeader,
-        displayHeader = _props$displayHeader === undefined ? true : _props$displayHeader;
+    var _props = this.props,
+        _props$displayHeader = _props.displayHeader,
+        displayHeader = _props$displayHeader === undefined ? true : _props$displayHeader,
+        recipientAvatar = _props.recipientAvatar;
+
 
     var messageList = this.props.messageList || [];
     var classList = ["sc-chat-window", this.props.isOpen ? "opened" : "closed"];
@@ -44,6 +47,7 @@ var ChatWindow = function (_Component) {
         onClose: this.props.onClose
       }),
       React.createElement(MessageList, {
+        recipientAvatar: recipientAvatar,
         messages: messageList,
         imageUrl: this.props.agentProfile.imageUrl
       }),

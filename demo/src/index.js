@@ -68,7 +68,7 @@ class Demo extends Component {
       <TestArea
         onMessage={this._sendMessage.bind(this)}
       />
-      <ChatWindow
+      {/* <ChatWindow
         onUserInputSubmit={this._onMessageWasSent.bind(this)}
         messageList={this.state.messageList}
         isOpen={true}
@@ -77,8 +77,8 @@ class Demo extends Component {
           teamName: 'react-chat-window',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
-      />
-      {/* <Launcher
+      /> */}
+      <Launcher
         agentProfile={{
           teamName: 'react-chat-window',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
@@ -90,7 +90,7 @@ class Demo extends Component {
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         showEmoji
-      /> */}
+      />
       <img className="demo-monster-img" src={monsterImgUrl} />
       <Footer />
     </div>

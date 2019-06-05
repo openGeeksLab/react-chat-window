@@ -56,6 +56,8 @@ var Launcher = function (_Component) {
   Launcher.prototype.render = function render() {
     var isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
     var classList = ['sc-launcher', isOpen ? 'opened' : ''];
+    console.log('here');
+
     return React.createElement(
       'div',
       { id: 'sc-launcher' },
@@ -67,6 +69,7 @@ var Launcher = function (_Component) {
         React.createElement('img', { className: "sc-closed-icon", src: launcherIcon })
       ),
       React.createElement(ChatWindow, {
+        recipientAvatar: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg',
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
         onFilesSelected: this.props.onFilesSelected,

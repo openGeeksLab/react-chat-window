@@ -20,7 +20,8 @@ class ChatWindow extends Component {
 
   render() {
     //TODO: default avatar
-    const { displayHeader = true } = this.props
+    const { displayHeader = true, recipientAvatar } = this.props;
+
     let messageList = this.props.messageList || [];
     let classList = [
       "sc-chat-window",
@@ -35,6 +36,7 @@ class ChatWindow extends Component {
           onClose={this.props.onClose}
         />}
         <MessageList
+          recipientAvatar={recipientAvatar}
           messages={messageList}
           imageUrl={this.props.agentProfile.imageUrl}
         />

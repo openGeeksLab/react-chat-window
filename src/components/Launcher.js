@@ -45,6 +45,8 @@ class Launcher extends Component {
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
+    console.log('here');
+
     return (
       <div id="sc-launcher">
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
@@ -53,6 +55,7 @@ class Launcher extends Component {
           <img className={"sc-closed-icon"} src={launcherIcon} />
         </div>
         <ChatWindow
+          recipientAvatar={'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg'}
           messageList={this.props.messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}

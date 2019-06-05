@@ -5613,6 +5613,9 @@ var Messages_Message = function (_Component) {
   };
 
   Message.prototype.render = function render() {
+    var recipientAvatar = this.props.recipientAvatar;
+
+
     var contentClassList = ["sc-message--content", this.props.message.author === "me" ? "sent" : "received"];
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
@@ -5621,7 +5624,7 @@ var Messages_Message = function (_Component) {
         'div',
         { className: contentClassList.join(" ") },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'sc-message--avatar', style: {
-            backgroundImage: 'url(' + chat_icon_default.a + ')'
+            backgroundImage: 'url(' + (recipientAvatar || chat_icon_default.a) + ')'
           } }),
         this._renderMessageOfType(this.props.message.type)
       )
@@ -5658,13 +5661,18 @@ var MessageList_MessageList = function (_Component) {
   MessageList.prototype.render = function render() {
     var _this2 = this;
 
+    var recipientAvatar = this.props.recipientAvatar;
+
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: 'sc-message-list', ref: function ref(el) {
           return _this2.scrollList = el;
         } },
       this.props.messages.map(function (message, i) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, { message: message, key: i });
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, {
+          recipientAvatar: recipientAvatar,
+          message: message,
+          key: i });
       })
     );
   };
@@ -6182,8 +6190,11 @@ var ChatWindow_ChatWindow = function (_Component) {
 
   ChatWindow.prototype.render = function render() {
     //TODO: default avatar
-    var _props$displayHeader = this.props.displayHeader,
-        displayHeader = _props$displayHeader === undefined ? true : _props$displayHeader;
+    var _props = this.props,
+        _props$displayHeader = _props.displayHeader,
+        displayHeader = _props$displayHeader === undefined ? true : _props$displayHeader,
+        recipientAvatar = _props.recipientAvatar;
+
 
     var messageList = this.props.messageList || [];
     var classList = ["sc-chat-window", this.props.isOpen ? "opened" : "closed"];
@@ -6197,6 +6208,7 @@ var ChatWindow_ChatWindow = function (_Component) {
         onClose: this.props.onClose
       }),
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_MessageList, {
+        recipientAvatar: recipientAvatar,
         messages: messageList,
         imageUrl: this.props.agentProfile.imageUrl
       }),
@@ -6288,6 +6300,8 @@ var Launcher_Launcher = function (_Component) {
   Launcher.prototype.render = function render() {
     var isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
     var classList = ['sc-launcher', isOpen ? 'opened' : ''];
+    console.log('here');
+
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { id: 'sc-launcher' },
@@ -6299,6 +6313,7 @@ var Launcher_Launcher = function (_Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('img', { className: "sc-closed-icon", src: logo_no_bg_default.a })
       ),
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ChatWindow, {
+        recipientAvatar: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg',
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
         onFilesSelected: this.props.onFilesSelected,

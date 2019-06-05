@@ -7,11 +7,15 @@ class MessageList extends Component {
     this.scrollList.scrollTop = this.scrollList.scrollHeight;
   }
 
-  render () {
+  render() {
+    const { recipientAvatar } = this.props;
     return (
       <div className="sc-message-list" ref={el => this.scrollList = el}>
         {this.props.messages.map((message, i) => {
-          return <Message message={message} key={i} />
+          return <Message
+            recipientAvatar={recipientAvatar}
+            message={message}
+            key={i} />
         })}
       </div>)
   }
