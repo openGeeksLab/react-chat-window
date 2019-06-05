@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import {Launcher} from '../../src'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { Launcher, ChatWindow } from '../../src'
 import messageHistory from './messageHistory';
 import TestArea from './TestArea';
 import Header from './Header';
@@ -68,7 +68,17 @@ class Demo extends Component {
       <TestArea
         onMessage={this._sendMessage.bind(this)}
       />
-      <Launcher
+      <ChatWindow
+        onUserInputSubmit={this._onMessageWasSent.bind(this)}
+        messageList={this.state.messageList}
+        isOpen={true}
+        displayHeader={false}
+        agentProfile={{
+          teamName: 'react-chat-window',
+          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+        }}
+      />
+      {/* <Launcher
         agentProfile={{
           teamName: 'react-chat-window',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
@@ -80,11 +90,11 @@ class Demo extends Component {
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         showEmoji
-      />
+      /> */}
       <img className="demo-monster-img" src={monsterImgUrl} />
       <Footer />
     </div>
   }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo />, document.querySelector('#demo'))

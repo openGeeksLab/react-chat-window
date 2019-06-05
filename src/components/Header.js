@@ -3,7 +3,6 @@ import closeIcon from './../assets/close-icon.png';
 
 
 class Header extends Component {
-
   render() {
     return (
       <div className="sc-header">

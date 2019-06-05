@@ -6,43 +6,46 @@ import Header from './Header'
 
 
 class ChatWindow extends Component {
-    constructor(props) {
-      super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    onUserInputSubmit(message) {
-      this.props.onUserInputSubmit(message);
-    }
+  onUserInputSubmit(message) {
+    this.props.onUserInputSubmit(message);
+  }
 
-    onFilesSelected(filesList) {
-      this.props.onFilesSelected(filesList);
-    }
+  onFilesSelected(filesList) {
+    this.props.onFilesSelected(filesList);
+  }
 
-    render() {
-      let messageList = this.props.messageList || [];
-      let classList = [
-        "sc-chat-window",
-        (this.props.isOpen ? "opened" : "closed")
-      ];
-      return (
-        <div className={classList.join(' ')}>
-          <Header
-            teamName={this.props.agentProfile.teamName}
-            imageUrl={this.props.agentProfile.imageUrl}
-            onClose={this.props.onClose}
-          />
-          <MessageList
-            messages={messageList}
-            imageUrl={this.props.agentProfile.imageUrl}
-          />
-          <UserInput
-            onSubmit={this.onUserInputSubmit.bind(this)}
-            onFilesSelected={this.onFilesSelected.bind(this)}
-            showEmoji={this.props.showEmoji}
-          />
-        </div>
-      );
-    }
+  render() {
+    //TODO: default avatar
+    const { displayHeader = true } = this.props
+    let messageList = this.props.messageList || [];
+    let classList = [
+      "sc-chat-window",
+      (this.props.isOpen ? "opened" : "closed")
+    ];
+
+    return (
+      <div className={classList.join(' ')}>
+        {displayHeader && < Header
+          teamName={this.props.agentProfile.teamName}
+          imageUrl={this.props.agentProfile.imageUrl}
+          onClose={this.props.onClose}
+        />}
+        <MessageList
+          messages={messageList}
+          imageUrl={this.props.agentProfile.imageUrl}
+        />
+        <UserInput
+          onSubmit={this.onUserInputSubmit.bind(this)}
+          onFilesSelected={this.onFilesSelected.bind(this)}
+          showEmoji={this.props.showEmoji}
+        />
+      </div>
+    );
+  }
 }
 
 ChatWindow.propTypes = {
@@ -51,7 +54,7 @@ ChatWindow.propTypes = {
   onClose: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func,
   onUserInputSubmit: PropTypes.func.isRequired,
-  showEmoji: PropTypes.bool
+  showEmoji: PropTypes.bool,
 }
 
 export default ChatWindow;

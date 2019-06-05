@@ -6181,12 +6181,17 @@ var ChatWindow_ChatWindow = function (_Component) {
   };
 
   ChatWindow.prototype.render = function render() {
+    //TODO: default avatar
+    var _props$displayHeader = this.props.displayHeader,
+        displayHeader = _props$displayHeader === undefined ? true : _props$displayHeader;
+
     var messageList = this.props.messageList || [];
     var classList = ["sc-chat-window", this.props.isOpen ? "opened" : "closed"];
+
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: classList.join(' ') },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_Header, {
+      displayHeader && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_Header, {
         teamName: this.props.agentProfile.teamName,
         imageUrl: this.props.agentProfile.imageUrl,
         onClose: this.props.onClose
@@ -6338,6 +6343,8 @@ Launcher_Launcher.defaultProps = {
 /* harmony default export */ var components_Launcher = (Launcher_Launcher);
 // CONCATENATED MODULE: ./src/index.js
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Launcher", function() { return components_Launcher; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "ChatWindow", function() { return components_ChatWindow; });
+
 
 
 
