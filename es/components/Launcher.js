@@ -68,7 +68,7 @@ var Launcher = function (_Component) {
         React.createElement('img', { className: "sc-open-icon", src: launcherIconActive }),
         React.createElement('img', { className: "sc-closed-icon", src: launcherIcon })
       ),
-      React.createElement(ChatWindo, _extends({}, this.props, {
+      React.createElement(ChatWindow, _extends({}, this.props, {
         recipientAvatar: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg',
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
