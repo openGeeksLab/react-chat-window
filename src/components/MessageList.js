@@ -38,14 +38,12 @@ class MessageList extends Component {
       <div className="sc-message-list" ref={el => { this.el = el; }}>
         <InfiniteScroll
           pageStart={pageStart || 0}
-          loadMore={() => {
-            console.log('more');
-          }}
-          isReverse={true}
-          initialLoad={false}
-          threshold={60}
-          hasMore={true}
-          useWindow={false}
+          loadMore={loadMore}
+          isReverse={isReverse}
+          initialLoad={initialLoad}
+          threshold={threshold}
+          hasMore={hasMore}
+          useWindow={useWindow}
           loader={<div className="spinner" key={0}>
             <div className="rect1"></div>
             <div className="rect2"></div>

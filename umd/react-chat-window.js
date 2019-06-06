@@ -5973,15 +5973,19 @@ var MessageList_MessageList = function (_Component) {
 
     return _ret = (_temp = (_this = MessageList_possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
       onlyOnce: false
+    }, _this.componentDidMount = function () {
+      _this.messagesEnd.scrollIntoView();
     }, _temp), MessageList_possibleConstructorReturn(_this, _ret);
   }
 
   MessageList.prototype.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
     var isOpen = this.props.isOpen;
+    var onlyOnce = this.state.onlyOnce;
 
-
-    if (prevProps.isOpen !== isOpen && isOpen) {
+    if (prevProps.isOpen !== isOpen && isOpen || !onlyOnce) {
+      console.log('asdasdasdsadasd');
       this.messagesEnd.scrollIntoView();
+      this.setState({ onlyOnce: true });
     }
   };
 
