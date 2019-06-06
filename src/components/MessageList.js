@@ -5,7 +5,8 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 class MessageList extends Component {
   state = {
-    onlyOnce: false
+    onlyOnce: false,
+
   }
 
   componentDidMount = () => {
@@ -13,10 +14,16 @@ class MessageList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { isOpen } = this.props;
+    const { isOpen, messages } = this.props;
     const { onlyOnce } = this.state
-    if ((prevProps.isOpen !== isOpen && isOpen) || !onlyOnce) {
-      console.log('asdasdasdsadasd')
+    if ((prevProps.isOpen !== isOpen && isOpen)) {
+      console.log('here')
+      this.messagesEnd.scrollIntoView()
+    }
+
+    if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
+      console.log('here2');
+
       this.messagesEnd.scrollIntoView()
       this.setState({ onlyOnce: true })
     }
