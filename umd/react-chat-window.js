@@ -5986,13 +5986,10 @@ var MessageList_MessageList = function (_Component) {
     var onlyOnce = this.state.onlyOnce;
 
     if (prevProps.isOpen !== isOpen && isOpen) {
-      console.log('here');
       this.messagesEnd.scrollIntoView();
     }
-
+    //TODO: work uncorrectly
     if (prevProps.messages !== messages && messages > 0 || !onlyOnce) {
-      console.log('here2');
-
       this.messagesEnd.scrollIntoView();
       this.setState({ onlyOnce: true });
     }
@@ -6010,7 +6007,7 @@ var MessageList_MessageList = function (_Component) {
         threshold = _props2.threshold,
         hasMore = _props2.hasMore,
         useWindow = _props2.useWindow;
-
+    //TODO: in future change key as unique id
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',

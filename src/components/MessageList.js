@@ -17,13 +17,10 @@ class MessageList extends Component {
     const { isOpen, messages } = this.props;
     const { onlyOnce } = this.state
     if ((prevProps.isOpen !== isOpen && isOpen)) {
-      console.log('here')
       this.messagesEnd.scrollIntoView()
     }
-
+    //TODO: work uncorrectly
     if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
-      console.log('here2');
-
       this.messagesEnd.scrollIntoView()
       this.setState({ onlyOnce: true })
     }
@@ -40,7 +37,7 @@ class MessageList extends Component {
       hasMore,
       useWindow
     } = this.props;
-
+    //TODO: in future change key as unique id
     return (
       <div className="sc-message-list" ref={el => { this.el = el; }}>
         <InfiniteScroll
