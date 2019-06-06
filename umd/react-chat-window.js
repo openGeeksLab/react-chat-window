@@ -6629,6 +6629,8 @@ var notification = __webpack_require__(8);
 var notification_default = /*#__PURE__*/__webpack_require__.n(notification);
 
 // CONCATENATED MODULE: ./src/components/Launcher.js
+var Launcher_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function Launcher_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function Launcher_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -6697,7 +6699,7 @@ var Launcher_Launcher = function (_Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('img', { className: "sc-open-icon", src: close_icon_default.a }),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('img', { className: "sc-closed-icon", src: logo_no_bg_default.a })
       ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ChatWindow, {
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ChatWindo, Launcher_extends({}, this.props, {
         recipientAvatar: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg',
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
@@ -6706,7 +6708,7 @@ var Launcher_Launcher = function (_Component) {
         isOpen: isOpen,
         onClose: this.handleClick.bind(this),
         showEmoji: this.props.showEmoji
-      })
+      }))
     );
   };
 
