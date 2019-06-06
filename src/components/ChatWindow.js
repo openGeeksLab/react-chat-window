@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import MessageList from './MessageList'
 import UserInput from './UserInput'
 import Header from './Header'
-
+import InfiniteScroll from 'react-infinite-scroller';
 
 class ChatWindow extends Component {
   constructor(props) {
@@ -35,9 +35,12 @@ class ChatWindow extends Component {
           imageUrl={this.props.agentProfile.imageUrl}
           onClose={this.props.onClose}
         />}
+
         <MessageList
+          {...this.props}
           recipientAvatar={recipientAvatar}
           messages={messageList}
+          isOpen={this.props.isOpen}
           imageUrl={this.props.agentProfile.imageUrl}
         />
         <UserInput

@@ -45,8 +45,6 @@ class Launcher extends Component {
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
-    console.log('here');
-
     return (
       <div id="sc-launcher">
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>

@@ -56,8 +56,6 @@ var Launcher = function (_Component) {
   Launcher.prototype.render = function render() {
     var isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
     var classList = ['sc-launcher', isOpen ? 'opened' : ''];
-    console.log('here');
-
     return React.createElement(
       'div',
       { id: 'sc-launcher' },

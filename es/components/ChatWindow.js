@@ -1,3 +1,5 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -9,6 +11,7 @@ import React, { Component } from 'react';
 import MessageList from './MessageList';
 import UserInput from './UserInput';
 import Header from './Header';
+import InfiniteScroll from 'react-infinite-scroller';
 
 var ChatWindow = function (_Component) {
   _inherits(ChatWindow, _Component);
@@ -46,11 +49,12 @@ var ChatWindow = function (_Component) {
         imageUrl: this.props.agentProfile.imageUrl,
         onClose: this.props.onClose
       }),
-      React.createElement(MessageList, {
+      React.createElement(MessageList, _extends({}, this.props, {
         recipientAvatar: recipientAvatar,
         messages: messageList,
+        isOpen: this.props.isOpen,
         imageUrl: this.props.agentProfile.imageUrl
-      }),
+      })),
       React.createElement(UserInput, {
         onSubmit: this.onUserInputSubmit.bind(this),
         onFilesSelected: this.onFilesSelected.bind(this),

@@ -6,7 +6,6 @@ import chatIconUrl from './../../assets/chat-icon.svg'
 
 
 class Message extends Component {
-
   _renderMessageOfType(type) {
     switch (type) {
       case 'text':
