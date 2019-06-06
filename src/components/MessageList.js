@@ -8,12 +8,17 @@ class MessageList extends Component {
     onlyOnce: false
   }
 
+  componentDidMount = () => {
+    this.messagesEnd.scrollIntoView()
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const { isOpen } = this.props;
-
-    if (prevProps.isOpen !== isOpen && isOpen) {
+    const { onlyOnce } = this.state
+    if ((prevProps.isOpen !== isOpen && isOpen) || !onlyOnce) {
+      console.log('asdasdasdsadasd')
       this.messagesEnd.scrollIntoView()
+      this.setState({ onlyOnce: true })
     }
   }
 
@@ -33,12 +38,14 @@ class MessageList extends Component {
       <div className="sc-message-list" ref={el => { this.el = el; }}>
         <InfiniteScroll
           pageStart={pageStart || 0}
-          loadMore={loadMore}
-          isReverse={isReverse}
-          initialLoad={initialLoad}
-          threshold={threshold}
-          hasMore={hasMore}
-          useWindow={useWindow}
+          loadMore={() => {
+            console.log('more');
+          }}
+          isReverse={true}
+          initialLoad={false}
+          threshold={60}
+          hasMore={true}
+          useWindow={false}
           loader={<div className="spinner" key={0}>
             <div className="rect1"></div>
             <div className="rect2"></div>
