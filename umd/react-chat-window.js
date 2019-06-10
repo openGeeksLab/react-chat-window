@@ -6697,7 +6697,6 @@ var Launcher_Launcher = function (_Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('img', { className: "sc-closed-icon", src: logo_no_bg_default.a })
       ),
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ChatWindow, Launcher_extends({}, this.props, {
-        recipientAvatar: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg',
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
         onFilesSelected: this.props.onFilesSelected,

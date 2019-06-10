@@ -54,7 +54,6 @@ class Launcher extends Component {
         </div>
         <ChatWindow
           {...this.props}
-          recipientAvatar={'https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg'}
           messageList={this.props.messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}

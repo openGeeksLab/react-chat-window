@@ -143,6 +143,9 @@
     -webkit-transform: scaleY(1.0);
   }
 }
+.sc-message-list div > .sc-message:first-child{
+ margin-top: 10px;
+}
 
 .sc-message-list {
   height: 80%;
@@ -715,4 +718,4 @@
   color: #C1C7CD;
 }
 
-/*# sourceMappingURL=main.d0bc825a.css.map*/
+/*# sourceMappingURL=main.a21b1b33.css.map*/
