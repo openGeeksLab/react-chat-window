@@ -9,6 +9,8 @@ import React, { Component } from 'react';
 import Message from './Messages';
 import InfiniteScroll from 'react-infinite-scroller';
 
+import { timeLabel } from '../utils';
+
 var MessageList = function (_Component) {
   _inherits(MessageList, _Component);
 
@@ -22,10 +24,16 @@ var MessageList = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
-      onlyOnce: false
-
+      onlyOnce: false,
+      messageList: []
     }, _this.componentDidMount = function () {
       _this.messagesEnd.scrollIntoView();
+      _this.dateDelimether();
+    }, _this.dateDelimether = function () {
+      var messages = _this.props.messages;
+
+      var messagesWithLabels = timeLabel(messages);
+      _this.setState({ messageList: messagesWithLabels });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -39,9 +47,12 @@ var MessageList = function (_Component) {
       this.messagesEnd.scrollIntoView();
     }
     //TODO: work uncorrectly
-    if (prevProps.messages !== messages && messages > 0 || !onlyOnce) {
-      this.messagesEnd.scrollIntoView();
-      this.setState({ onlyOnce: true });
+    // if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
+    //   this.messagesEnd.scrollIntoView()
+    //   this.setState({ onlyOnce: true })
+    // }
+    if (prevProps.messages !== messages && messages > 0) {
+      this.dateDelimether();
     }
   };
 
@@ -57,6 +68,7 @@ var MessageList = function (_Component) {
         threshold = _props2.threshold,
         hasMore = _props2.hasMore,
         useWindow = _props2.useWindow;
+
     //TODO: in future change key as unique id
 
     return React.createElement(
@@ -83,7 +95,7 @@ var MessageList = function (_Component) {
             React.createElement('div', { className: 'rect4' })
           )
         },
-        this.props.messages.map(function (message, i) {
+        this.state.messageList.map(function (message, i) {
           return React.createElement(Message, {
             recipientAvatar: recipientAvatar,
             message: message,

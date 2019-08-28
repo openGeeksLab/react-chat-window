@@ -8,7 +8,9 @@ import React, { Component } from 'react';
 import TextMessage from './TextMessage';
 import EmojiMessage from './EmojiMessage';
 import FileMessage from './FileMessage';
+import SystemMessage from './SystemMessage';
 import chatIconUrl from './../../assets/chat-icon.svg';
+import { SYSTEM } from '../../constants';
 
 var Message = function (_Component) {
   _inherits(Message, _Component);
@@ -27,15 +29,20 @@ var Message = function (_Component) {
         return React.createElement(EmojiMessage, this.props.message);
       case 'file':
         return React.createElement(FileMessage, this.props.message);
+      case 'system':
+        return React.createElement(SystemMessage, this.props.message);
       default:
         console.error('Attempting to load message with unsupported file type \'' + type + '\'');
     }
   };
 
   Message.prototype.render = function render() {
-    var recipientAvatar = this.props.recipientAvatar;
+    var _props = this.props,
+        recipientAvatar = _props.recipientAvatar,
+        message = _props.message;
 
-
+    console.log('message', message.type);
+    console.log('message.type!==SYSTEM', message.type !== SYSTEM);
     var contentClassList = ["sc-message--content", this.props.message.author === "me" ? "sent" : "received"];
     return React.createElement(
       'div',
@@ -43,7 +50,7 @@ var Message = function (_Component) {
       React.createElement(
         'div',
         { className: contentClassList.join(" ") },
-        React.createElement('div', { className: 'sc-message--avatar', style: {
+        message.type !== SYSTEM && React.createElement('div', { className: 'sc-message--avatar', style: {
             backgroundImage: 'url(' + (recipientAvatar || chatIconUrl) + ')'
           } }),
         this._renderMessageOfType(this.props.message.type)

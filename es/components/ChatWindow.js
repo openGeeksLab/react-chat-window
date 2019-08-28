@@ -31,7 +31,6 @@ var ChatWindow = function (_Component) {
   };
 
   ChatWindow.prototype.render = function render() {
-    //TODO: default avatar
     var _props = this.props,
         _props$displayHeader = _props.displayHeader,
         displayHeader = _props$displayHeader === undefined ? true : _props$displayHeader,
