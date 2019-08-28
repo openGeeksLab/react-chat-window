@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 import { SYSTEM } from '../constants';
+import { log } from 'util';
 var TODAY = moment();
 var YESTERDAY = TODAY.clone().subtract(1, 'days').startOf('day');
 /**
@@ -16,10 +17,13 @@ export var timeformatter = function timeformatter(timestamp) {
 export var timeLabel = function timeLabel() {
     var messageList = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
+    console.log('messageList inside', messageList);
     var newArr = [];
 
     if (messageList.length === 0) {
-        return;
+        console.log('return');
+
+        return [];
     };
 
     var firstMessage = messageList[0];
@@ -48,6 +52,7 @@ export var timeLabel = function timeLabel() {
         newArr.push(_systemObj(showText));
         newArr.push(element);
     }
+
     return newArr;
 };
 
