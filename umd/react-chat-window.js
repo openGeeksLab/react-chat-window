@@ -23072,6 +23072,8 @@ var react_infinite_scroller = __webpack_require__(4);
 var react_infinite_scroller_default = /*#__PURE__*/__webpack_require__.n(react_infinite_scroller);
 
 // CONCATENATED MODULE: ./src/components/MessageList.js
+var _class, _temp2;
+
 function MessageList_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function MessageList_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23085,7 +23087,7 @@ function MessageList_inherits(subClass, superClass) { if (typeof superClass !== 
 
 
 
-var MessageList_MessageList = function (_Component) {
+var MessageList_MessageList = (_temp2 = _class = function (_Component) {
   MessageList_inherits(MessageList, _Component);
 
   function MessageList() {
@@ -23104,8 +23106,10 @@ var MessageList_MessageList = function (_Component) {
       _this.messagesEnd.scrollIntoView();
       _this.dateDelimether();
     }, _this.dateDelimether = function () {
-      var messages = _this.props.messages;
+      var _this$props$messages = _this.props.messages,
+          messages = _this$props$messages === undefined ? [] : _this$props$messages;
 
+      console.log('messages default ', messages);
       var messagesWithLabels = timeLabel(messages);
       console.log('messagesWithLabels', messagesWithLabels);
       _this.setState({ messageList: messagesWithLabels });
@@ -23186,7 +23190,10 @@ var MessageList_MessageList = function (_Component) {
   };
 
   return MessageList;
-}(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]), _class.defaultProps = {
+  messages: []
+}, _temp2);
+
 
 MessageList_MessageList.propTypes = {
   pageStart: prop_types_default.a.number,

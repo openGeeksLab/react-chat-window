@@ -1,3 +1,5 @@
+var _class, _temp2;
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -11,7 +13,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import { timeLabel } from '../utils';
 
-var MessageList = function (_Component) {
+var MessageList = (_temp2 = _class = function (_Component) {
   _inherits(MessageList, _Component);
 
   function MessageList() {
@@ -30,8 +32,10 @@ var MessageList = function (_Component) {
       _this.messagesEnd.scrollIntoView();
       _this.dateDelimether();
     }, _this.dateDelimether = function () {
-      var messages = _this.props.messages;
+      var _this$props$messages = _this.props.messages,
+          messages = _this$props$messages === undefined ? [] : _this$props$messages;
 
+      console.log('messages default ', messages);
       var messagesWithLabels = timeLabel(messages);
       console.log('messagesWithLabels', messagesWithLabels);
       _this.setState({ messageList: messagesWithLabels });
@@ -112,7 +116,10 @@ var MessageList = function (_Component) {
   };
 
   return MessageList;
-}(Component);
+}(Component), _class.defaultProps = {
+  messages: []
+}, _temp2);
+
 
 MessageList.propTypes = process.env.NODE_ENV !== "production" ? {
   pageStart: PropTypes.number,

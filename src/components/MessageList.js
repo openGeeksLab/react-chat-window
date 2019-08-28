@@ -11,6 +11,9 @@ class MessageList extends Component {
     messageList:[]
   }
 
+  static defaultProps ={
+    messages: []
+  }
   componentDidMount = () => {
     this.messagesEnd.scrollIntoView();
     this.dateDelimether();
@@ -33,7 +36,8 @@ class MessageList extends Component {
   }
 
   dateDelimether = () => {
-    const { messages } = this.props;
+    const { messages = [] } = this.props;
+    console.log('messages default ', messages)
     const messagesWithLabels   =timeLabel(messages);
     console.log('messagesWithLabels', messagesWithLabels)
     this.setState({ messageList: messagesWithLabels });
