@@ -23735,13 +23735,10 @@ var utils_timeformatter = function timeformatter(timestamp) {
 var timeLabel = function timeLabel() {
     var messageList = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    console.log('messageList inside', messageList);
     var newArr = [];
 
     if (messageList.length === 0) {
-        console.log('return');
-
-        return [];
+        return newArr;
     };
 
     var firstMessage = messageList[0];
@@ -23934,7 +23931,6 @@ var FileMessage_FileMessage = function FileMessage(props) {
 
 
 var SystemMessage_System = function System(props) {
-    console.log('props', props);
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         'div',
         { className: 'date-label' },
@@ -24057,9 +24053,9 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
       var _this$props$messages = _this.props.messages,
           messages = _this$props$messages === undefined ? [] : _this$props$messages;
 
-      console.log('messages default ', messages);
+
       var messagesWithLabels = timeLabel(messages);
-      console.log('messagesWithLabels', messagesWithLabels);
+
       _this.setState({ messageList: messagesWithLabels });
     }, _temp), MessageList_possibleConstructorReturn(_this, _ret);
   }
@@ -24080,7 +24076,6 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
     // }
     if (prevProps.messages !== messages) {
       this.dateDelimether();
-      this.messagesEnd.scrollIntoView();
     }
   };
 
@@ -24098,8 +24093,7 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
         useWindow = _props2.useWindow;
     var messageList = this.state.messageList;
 
-    console.log('messageList', messageList);
-    //TODO: in future change key as unique id
+
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: 'sc-message-list', ref: function ref(el) {

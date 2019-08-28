@@ -32,15 +32,14 @@ class MessageList extends Component {
     // }
     if (prevProps.messages !== messages) {
       this.dateDelimether();
-      this.messagesEnd.scrollIntoView()
     }
   }
 
   dateDelimether = () => {
     const { messages = [] } = this.props;
-    console.log('messages default ', messages)
+
     const messagesWithLabels   = timeLabel(messages);
-    console.log('messagesWithLabels', messagesWithLabels)
+
     this.setState({ messageList: messagesWithLabels });
   }
   
@@ -57,8 +56,7 @@ class MessageList extends Component {
     } = this.props;
 
     const {messageList} = this.state;
-    console.log('messageList', messageList)
-    //TODO: in future change key as unique id
+
     return (
       <div className="sc-message-list" ref={el => { this.el = el; }}>
         <InfiniteScroll

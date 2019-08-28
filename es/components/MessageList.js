@@ -35,9 +35,9 @@ var MessageList = (_temp2 = _class = function (_Component) {
       var _this$props$messages = _this.props.messages,
           messages = _this$props$messages === undefined ? [] : _this$props$messages;
 
-      console.log('messages default ', messages);
+
       var messagesWithLabels = timeLabel(messages);
-      console.log('messagesWithLabels', messagesWithLabels);
+
       _this.setState({ messageList: messagesWithLabels });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -58,7 +58,6 @@ var MessageList = (_temp2 = _class = function (_Component) {
     // }
     if (prevProps.messages !== messages) {
       this.dateDelimether();
-      this.messagesEnd.scrollIntoView();
     }
   };
 
@@ -76,8 +75,7 @@ var MessageList = (_temp2 = _class = function (_Component) {
         useWindow = _props2.useWindow;
     var messageList = this.state.messageList;
 
-    console.log('messageList', messageList);
-    //TODO: in future change key as unique id
+
     return React.createElement(
       'div',
       { className: 'sc-message-list', ref: function ref(el) {

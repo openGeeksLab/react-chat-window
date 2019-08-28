@@ -17,13 +17,10 @@ export var timeformatter = function timeformatter(timestamp) {
 export var timeLabel = function timeLabel() {
     var messageList = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    console.log('messageList inside', messageList);
     var newArr = [];
 
     if (messageList.length === 0) {
-        console.log('return');
-
-        return [];
+        return newArr;
     };
 
     var firstMessage = messageList[0];

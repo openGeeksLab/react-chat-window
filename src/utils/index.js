@@ -15,13 +15,10 @@ export const timeformatter = (timestamp) => {
 };
 
 export const timeLabel = (messageList = []) => {
-    console.log('messageList inside', messageList)
     const newArr = [];
 
     if(messageList.length === 0){
-        console.log('return');
-        
-        return [];
+        return newArr;
     };
 
     const { 0: firstMessage } = messageList;
