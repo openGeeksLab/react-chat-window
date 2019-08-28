@@ -14,10 +14,10 @@ export const timeformatter = (timestamp) => {
 };
 
 export const timeLabel = (messageList = []) => {
-    const newArr = []
-
+    const newArr = [];
+    
     if(messageList.length === 0){
-        return
+        return newArr;
     };
 
     const { 0: firstMessage } = messageList;
