@@ -35,6 +35,7 @@ class MessageList extends Component {
   dateDelimether = () => {
     const { messages } = this.props;
     const messagesWithLabels   =timeLabel(messages);
+    console.log('messagesWithLabels', messagesWithLabels)
     this.setState({ messageList: messagesWithLabels });
   }
   
@@ -50,6 +51,8 @@ class MessageList extends Component {
       useWindow
     } = this.props;
 
+    const {messageList} = this.state;
+    console.log('messageList', messageList)
     //TODO: in future change key as unique id
     return (
       <div className="sc-message-list" ref={el => { this.el = el; }}>
@@ -68,7 +71,7 @@ class MessageList extends Component {
             <div className="rect4"></div>
           </div>}
         >
-          {this.state.messageList.map((message, i) => {
+          {messageList.map((message, i) => {
             return <Message
               recipientAvatar={recipientAvatar}
               message={message}

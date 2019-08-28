@@ -24,8 +24,7 @@ class Message extends Component {
 
   render() {
     const { recipientAvatar , message } = this.props;
-    console.log('message', message.type)
-    console.log('message.type!==SYSTEM', message.type!==SYSTEM)
+
     let contentClassList = [
       "sc-message--content",
       (this.props.message.author === "me" ? "sent" : "received")

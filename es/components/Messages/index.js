@@ -41,8 +41,7 @@ var Message = function (_Component) {
         recipientAvatar = _props.recipientAvatar,
         message = _props.message;
 
-    console.log('message', message.type);
-    console.log('message.type!==SYSTEM', message.type !== SYSTEM);
+
     var contentClassList = ["sc-message--content", this.props.message.author === "me" ? "sent" : "received"];
     return React.createElement(
       'div',

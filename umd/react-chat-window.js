@@ -23047,8 +23047,7 @@ var Messages_Message = function (_Component) {
         recipientAvatar = _props.recipientAvatar,
         message = _props.message;
 
-    console.log('message', message.type);
-    console.log('message.type!==SYSTEM', message.type !== SYSTEM);
+
     var contentClassList = ["sc-message--content", this.props.message.author === "me" ? "sent" : "received"];
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
@@ -23108,6 +23107,7 @@ var MessageList_MessageList = function (_Component) {
       var messages = _this.props.messages;
 
       var messagesWithLabels = timeLabel(messages);
+      console.log('messagesWithLabels', messagesWithLabels);
       _this.setState({ messageList: messagesWithLabels });
     }, _temp), MessageList_possibleConstructorReturn(_this, _ret);
   }
@@ -23143,9 +23143,10 @@ var MessageList_MessageList = function (_Component) {
         threshold = _props2.threshold,
         hasMore = _props2.hasMore,
         useWindow = _props2.useWindow;
+    var messageList = this.state.messageList;
 
+    console.log('messageList', messageList);
     //TODO: in future change key as unique id
-
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: 'sc-message-list', ref: function ref(el) {
@@ -23170,7 +23171,7 @@ var MessageList_MessageList = function (_Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect4' })
           )
         },
-        this.state.messageList.map(function (message, i) {
+        messageList.map(function (message, i) {
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, {
             recipientAvatar: recipientAvatar,
             message: message,

@@ -33,6 +33,7 @@ var MessageList = function (_Component) {
       var messages = _this.props.messages;
 
       var messagesWithLabels = timeLabel(messages);
+      console.log('messagesWithLabels', messagesWithLabels);
       _this.setState({ messageList: messagesWithLabels });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -68,9 +69,10 @@ var MessageList = function (_Component) {
         threshold = _props2.threshold,
         hasMore = _props2.hasMore,
         useWindow = _props2.useWindow;
+    var messageList = this.state.messageList;
 
+    console.log('messageList', messageList);
     //TODO: in future change key as unique id
-
     return React.createElement(
       'div',
       { className: 'sc-message-list', ref: function ref(el) {
@@ -95,7 +97,7 @@ var MessageList = function (_Component) {
             React.createElement('div', { className: 'rect4' })
           )
         },
-        this.state.messageList.map(function (message, i) {
+        messageList.map(function (message, i) {
           return React.createElement(Message, {
             recipientAvatar: recipientAvatar,
             message: message,
