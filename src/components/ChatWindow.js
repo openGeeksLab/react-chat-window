@@ -19,7 +19,6 @@ class ChatWindow extends Component {
   }
 
   render() {
-    //TODO: default avatar
     const { displayHeader = true, recipientAvatar } = this.props;
 
     let messageList = this.props.messageList || [];

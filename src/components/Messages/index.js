@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import TextMessage from './TextMessage'
 import EmojiMessage from './EmojiMessage'
 import FileMessage from './FileMessage'
+import SystemMessage from './SystemMessage'
 import chatIconUrl from './../../assets/chat-icon.svg'
-
+import { SYSTEM } from '../../constants';
 
 class Message extends Component {
   _renderMessageOfType(type) {
@@ -14,14 +15,17 @@ class Message extends Component {
         return <EmojiMessage {...this.props.message} />
       case 'file':
         return <FileMessage {...this.props.message} />
+      case 'system':
+        return <SystemMessage {...this.props.message}/>
       default:
         console.error(`Attempting to load message with unsupported file type '${type}'`)
     }
   }
 
   render() {
-    const { recipientAvatar } = this.props;
-
+    const { recipientAvatar , message } = this.props;
+    console.log('message', message.type)
+    console.log('message.type!==SYSTEM', message.type!==SYSTEM)
     let contentClassList = [
       "sc-message--content",
       (this.props.message.author === "me" ? "sent" : "received")
@@ -29,9 +33,9 @@ class Message extends Component {
     return (
       <div className="sc-message">
         <div className={contentClassList.join(" ")}>
-          <div className="sc-message--avatar" style={{
+          {message.type!==SYSTEM && <div className="sc-message--avatar" style={{
             backgroundImage: `url(${recipientAvatar || chatIconUrl})`
-          }}></div>
+          }}></div>}
           {this._renderMessageOfType(this.props.message.type)}
         </div>
       </div>)

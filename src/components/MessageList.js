@@ -3,29 +3,41 @@ import React, { Component } from 'react';
 import Message from './Messages'
 import InfiniteScroll from 'react-infinite-scroller';
 
+import {timeLabel} from '../utils'
+
 class MessageList extends Component {
   state = {
     onlyOnce: false,
-
+    messageList:[]
   }
 
   componentDidMount = () => {
-    this.messagesEnd.scrollIntoView()
+    this.messagesEnd.scrollIntoView();
+    this.dateDelimether();
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { isOpen, messages } = this.props;
-    const { onlyOnce } = this.state
+    const { onlyOnce } = this.state;
     if ((prevProps.isOpen !== isOpen && isOpen)) {
       this.messagesEnd.scrollIntoView()
     }
     //TODO: work uncorrectly
-    if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
-      this.messagesEnd.scrollIntoView()
-      this.setState({ onlyOnce: true })
+    // if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
+    //   this.messagesEnd.scrollIntoView()
+    //   this.setState({ onlyOnce: true })
+    // }
+    if (prevProps.messages !== messages && messages > 0 ) {
+      this.dateDelimether();
     }
   }
 
+  dateDelimether = () => {
+    const { messages } = this.props;
+    const messagesWithLabels   =timeLabel(messages);
+    this.setState({ messageList: messagesWithLabels });
+  }
+  
   render() {
     const {
       recipientAvatar,
@@ -37,6 +49,7 @@ class MessageList extends Component {
       hasMore,
       useWindow
     } = this.props;
+
     //TODO: in future change key as unique id
     return (
       <div className="sc-message-list" ref={el => { this.el = el; }}>
@@ -55,7 +68,7 @@ class MessageList extends Component {
             <div className="rect4"></div>
           </div>}
         >
-          {this.props.messages.map((message, i) => {
+          {this.state.messageList.map((message, i) => {
             return <Message
               recipientAvatar={recipientAvatar}
               message={message}
