@@ -32,6 +32,7 @@ class MessageList extends Component {
     // }
     if (prevProps.messages !== messages) {
       this.dateDelimether();
+      this.messagesEnd.scrollIntoView()
     }
   }
 

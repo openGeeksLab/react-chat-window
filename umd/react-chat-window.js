@@ -24080,6 +24080,7 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
     // }
     if (prevProps.messages !== messages) {
       this.dateDelimether();
+      this.messagesEnd.scrollIntoView();
     }
   };
 
