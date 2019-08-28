@@ -30,7 +30,7 @@ class MessageList extends Component {
     //   this.messagesEnd.scrollIntoView()
     //   this.setState({ onlyOnce: true })
     // }
-    if (prevProps.messages !== messages && messages > 0 ) {
+    if (prevProps.messages !== messages) {
       this.dateDelimether();
     }
   }
@@ -38,7 +38,7 @@ class MessageList extends Component {
   dateDelimether = () => {
     const { messages = [] } = this.props;
     console.log('messages default ', messages)
-    const messagesWithLabels   =timeLabel(messages);
+    const messagesWithLabels   = timeLabel(messages);
     console.log('messagesWithLabels', messagesWithLabels)
     this.setState({ messageList: messagesWithLabels });
   }

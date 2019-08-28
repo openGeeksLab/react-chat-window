@@ -56,7 +56,7 @@ var MessageList = (_temp2 = _class = function (_Component) {
     //   this.messagesEnd.scrollIntoView()
     //   this.setState({ onlyOnce: true })
     // }
-    if (prevProps.messages !== messages && messages > 0) {
+    if (prevProps.messages !== messages) {
       this.dateDelimether();
     }
   };
