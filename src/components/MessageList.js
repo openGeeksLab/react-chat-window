@@ -69,7 +69,7 @@ class MessageList extends Component {
     } = this.props;
 
     const { messageList } = this.state;
-    console.log('messageList', messageList)
+
 
     return (
       <div className="sc-message-list">
