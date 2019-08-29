@@ -23981,8 +23981,6 @@ var Messages_Message = function (_Component) {
   }
 
   Message.prototype._renderMessageOfType = function _renderMessageOfType(type) {
-    console.log('type', type);
-    console.log('this.props.message', this.props.message);
     switch (type) {
       case 'text':
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_TextMessage, this.props.message);

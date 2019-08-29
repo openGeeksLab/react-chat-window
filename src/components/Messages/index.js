@@ -8,8 +8,6 @@ import { SYSTEM } from '../../constants';
 
 class Message extends Component {
   _renderMessageOfType(type) {
-    console.log('type', type)
-    console.log('this.props.message', this.props.message)
     switch (type) {
       case 'text':
         return <TextMessage {...this.props.message} />
