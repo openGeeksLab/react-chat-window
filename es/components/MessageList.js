@@ -114,6 +114,7 @@ var MessageList = (_temp2 = _class = function (_Component) {
           )
         },
         messageList.map(function (message, i) {
+          console.log('message', message);
           return React.createElement(Message, {
             recipientAvatar: recipientAvatar,
             message: message,

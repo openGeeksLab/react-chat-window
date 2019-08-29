@@ -89,6 +89,7 @@ class MessageList extends Component {
           </div>}
         >
           {messageList.map((message, i) => {
+            console.log('message', message)
             return <Message
               recipientAvatar={recipientAvatar}
               message={message}

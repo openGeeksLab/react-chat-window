@@ -53,7 +53,7 @@ var Message = function (_Component) {
       React.createElement(
         'div',
         { className: contentClassList.join(" ") },
-        message.type !== SYSTEM && React.createElement('div', { className: 'sc-message--avatar', style: {
+        React.createElement('div', { className: 'sc-message--avatar', style: {
             backgroundImage: 'url(' + (recipientAvatar || chatIconUrl) + ')'
           } }),
         this._renderMessageOfType(this.props.message.type)

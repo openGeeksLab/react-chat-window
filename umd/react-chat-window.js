@@ -24012,7 +24012,7 @@ var Messages_Message = function (_Component) {
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         'div',
         { className: contentClassList.join(" ") },
-        message.type !== SYSTEM && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'sc-message--avatar', style: {
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'sc-message--avatar', style: {
             backgroundImage: 'url(' + (recipientAvatar || chat_icon_default.a) + ')'
           } }),
         this._renderMessageOfType(this.props.message.type)
@@ -24145,6 +24145,7 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
           )
         },
         messageList.map(function (message, i) {
+          console.log('message', message);
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, {
             recipientAvatar: recipientAvatar,
             message: message,
