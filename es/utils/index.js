@@ -26,7 +26,7 @@ export var timeLabel = function timeLabel() {
     var firstMessage = messageList[0];
 
 
-    newArr.push(_systemObj(_getTimestamp(firstMessage.state.timestamp)));
+    firstMessage.showText = _systemObj(_getTimestamp(firstMessage.state.timestamp));
     newArr.push(firstMessage);
 
     var lastSavedDate = firstMessage.state.timestamp;
@@ -46,7 +46,7 @@ export var timeLabel = function timeLabel() {
 
         var showText = _getTimestamp(timestamp);
 
-        newArr.push(_systemObj(showText));
+        element.showText = _systemObj(showText);
         newArr.push(element);
     }
 

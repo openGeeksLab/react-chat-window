@@ -23744,7 +23744,7 @@ var timeLabel = function timeLabel() {
     var firstMessage = messageList[0];
 
 
-    newArr.push(utils_systemObj(_getTimestamp(firstMessage.state.timestamp)));
+    firstMessage.showText = utils_systemObj(_getTimestamp(firstMessage.state.timestamp));
     newArr.push(firstMessage);
 
     var lastSavedDate = firstMessage.state.timestamp;
@@ -23764,7 +23764,7 @@ var timeLabel = function timeLabel() {
 
         var showText = _getTimestamp(timestamp);
 
-        newArr.push(utils_systemObj(showText));
+        element.showText = utils_systemObj(showText);
         newArr.push(element);
     }
 
@@ -23981,15 +23981,19 @@ var Messages_Message = function (_Component) {
   }
 
   Message.prototype._renderMessageOfType = function _renderMessageOfType(type) {
+    console.log('type', type);
     switch (type) {
       case 'text':
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_TextMessage, this.props.message);
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          'div',
+          null,
+          this.props.message.showText && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SystemMessage, this.props.message.showText),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_TextMessage, this.props.message)
+        );
       case 'emoji':
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_EmojiMessage, this.props.message);
       case 'file':
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_FileMessage, this.props.message);
-      case 'system':
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SystemMessage, this.props.message);
       default:
         console.error('Attempting to load message with unsupported file type \'' + type + '\'');
     }
@@ -24117,7 +24121,6 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
         useWindow = _props2.useWindow;
     var messageList = this.state.messageList;
 
-    console.log('messageList', messageList);
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',

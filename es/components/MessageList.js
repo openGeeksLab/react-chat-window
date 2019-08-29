@@ -90,7 +90,6 @@ var MessageList = (_temp2 = _class = function (_Component) {
         useWindow = _props2.useWindow;
     var messageList = this.state.messageList;
 
-    console.log('messageList', messageList);
 
     return React.createElement(
       'div',

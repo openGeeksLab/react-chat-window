@@ -4,7 +4,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TextMessage from './TextMessage';
 import EmojiMessage from './EmojiMessage';
 import FileMessage from './FileMessage';
@@ -22,15 +22,19 @@ var Message = function (_Component) {
   }
 
   Message.prototype._renderMessageOfType = function _renderMessageOfType(type) {
+    console.log('type', type);
     switch (type) {
       case 'text':
-        return React.createElement(TextMessage, this.props.message);
+        return React.createElement(
+          'div',
+          null,
+          this.props.message.showText && React.createElement(SystemMessage, this.props.message.showText),
+          React.createElement(TextMessage, this.props.message)
+        );
       case 'emoji':
         return React.createElement(EmojiMessage, this.props.message);
       case 'file':
         return React.createElement(FileMessage, this.props.message);
-      case 'system':
-        return React.createElement(SystemMessage, this.props.message);
       default:
         console.error('Attempting to load message with unsupported file type \'' + type + '\'');
     }
