@@ -24117,6 +24117,7 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
         useWindow = _props2.useWindow;
     var messageList = this.state.messageList;
 
+    console.log('messageList', messageList);
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
