@@ -13,7 +13,7 @@ import React, { Component } from 'react';
 import Message from './Messages';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import { timeLabel, getLastMessageIndex } from '../utils';
+import { getLastMessageIndex } from '../utils';
 
 var MessageList = (_temp2 = _class = function (_Component) {
   _inherits(MessageList, _Component);
@@ -48,7 +48,6 @@ var MessageList = (_temp2 = _class = function (_Component) {
 
       _this.setState(_extends({}, newState), function () {
         if (newState.lastConsumedMessage) {
-          console.log('newState.lastConsumedMessage', newState.lastConsumedMessage);
           var objDiv = document.getElementsByClassName('sc-message-list')[0];
           objDiv.scrollTop = objDiv.scrollHeight;
         }

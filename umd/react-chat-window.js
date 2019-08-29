@@ -23744,7 +23744,7 @@ var timeLabel = function timeLabel() {
     var firstMessage = messageList[0];
 
 
-    newArr.push(utils_systemObj(_getTimestamp(firstMessage.state.timestamp)));
+    newArr.push(utils_systemObj(getTimestamp(firstMessage.state.timestamp)));
     newArr.push(firstMessage);
 
     var lastSavedDate = firstMessage.state.timestamp;
@@ -23762,7 +23762,7 @@ var timeLabel = function timeLabel() {
             continue;
         }
 
-        var showText = _getTimestamp(timestamp);
+        var showText = getTimestamp(timestamp);
 
         newArr.push(utils_systemObj(showText));
         newArr.push(element);
@@ -23787,7 +23787,7 @@ var utils_systemObj = function _systemObj(text) {
     };
 };
 
-var _getTimestamp = function _getTimestamp(timestamp) {
+var getTimestamp = function getTimestamp(timestamp) {
     var showText = '';
 
     if (_isToday(timestamp)) {
@@ -23843,7 +23843,7 @@ var TextMessage_TextMessage = function TextMessage(_ref) {
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: 'sc-message-time' },
-      utils_timeformatter(state.timestamp)
+      getTimestamp(state.timestamp) + ' ' + utils_timeformatter(state.timestamp)
     )
   );
 };
@@ -24075,7 +24075,6 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
 
       _this.setState(_extends({}, newState), function () {
         if (newState.lastConsumedMessage) {
-          console.log('newState.lastConsumedMessage', newState.lastConsumedMessage);
           var objDiv = document.getElementsByClassName('sc-message-list')[0];
           objDiv.scrollTop = objDiv.scrollHeight;
         }

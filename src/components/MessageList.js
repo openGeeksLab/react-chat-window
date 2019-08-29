@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Message from './Messages'
 import InfiniteScroll from 'react-infinite-scroller';
 
-import { timeLabel, getLastMessageIndex } from '../utils'
+import { getLastMessageIndex } from '../utils'
 
 class MessageList extends Component {
   state = {
@@ -45,7 +45,6 @@ class MessageList extends Component {
 
     this.setState({ ...newState }, () => {
       if (newState.lastConsumedMessage) {
-        console.log('newState.lastConsumedMessage', newState.lastConsumedMessage)
         const objDiv = document.getElementsByClassName('sc-message-list')[0];
         objDiv.scrollTop = objDiv.scrollHeight;
       }

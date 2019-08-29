@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Linkify from 'react-linkify';
-import { timeformatter } from '../../utils';
+import { timeformatter, getTimestamp } from '../../utils';
 
 var TextMessage = function TextMessage(_ref) {
   var data = _ref.data,
@@ -17,7 +17,7 @@ var TextMessage = function TextMessage(_ref) {
     React.createElement(
       'div',
       { className: 'sc-message-time' },
-      timeformatter(state.timestamp)
+      getTimestamp(state.timestamp) + ' ' + timeformatter(state.timestamp)
     )
   );
 };
