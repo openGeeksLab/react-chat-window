@@ -113,12 +113,12 @@ var MessageList = (_temp2 = _class = function (_Component) {
             React.createElement('div', { className: 'rect4' })
           )
         },
-        messageList.map(function (message, i) {
+        messageList.map(function (message) {
           console.log('message', message);
           return React.createElement(Message, {
             recipientAvatar: recipientAvatar,
             message: message,
-            key: i });
+            key: message.state.sid });
         }),
         React.createElement('div', { style: { float: "left", clear: "both" },
           ref: function ref(el) {

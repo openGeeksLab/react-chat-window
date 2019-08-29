@@ -24144,12 +24144,12 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect4' })
           )
         },
-        messageList.map(function (message, i) {
+        messageList.map(function (message) {
           console.log('message', message);
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, {
             recipientAvatar: recipientAvatar,
             message: message,
-            key: i });
+            key: message.state.sid });
         }),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { style: { float: "left", clear: "both" },
           ref: function ref(el) {

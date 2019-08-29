@@ -88,12 +88,12 @@ class MessageList extends Component {
             <div className="rect4"></div>
           </div>}
         >
-          {messageList.map((message, i) => {
+          {messageList.map((message) => {
             console.log('message', message)
             return <Message
               recipientAvatar={recipientAvatar}
               message={message}
-              key={i} />
+              key={message.state.sid} />
           })}
           <div style={{ float: "left", clear: "both" }}
             ref={(el) => { this.messagesEnd = el; }}>
