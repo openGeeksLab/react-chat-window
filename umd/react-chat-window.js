@@ -24047,7 +24047,7 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
       onlyOnce: false,
       messageList: []
     }, _this.componentDidMount = function () {
-      _this.messagesEnd.scrollIntoView();
+      //  this.messagesEnd.scrollIntoView();
       _this.dateDelimether();
     }, _this.dateDelimether = function () {
       var _this$props$messages = _this.props.messages,
@@ -24056,7 +24056,10 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
 
       var messagesWithLabels = timeLabel(messages);
 
-      _this.setState({ messageList: messagesWithLabels });
+      _this.setState({ messageList: messagesWithLabels }, function () {
+        var objDiv = document.getElementsByClassName('sc-message-list')[0];
+        objDiv.scrollTop = objDiv.scrollHeight;
+      });
     }, _temp), MessageList_possibleConstructorReturn(_this, _ret);
   }
 

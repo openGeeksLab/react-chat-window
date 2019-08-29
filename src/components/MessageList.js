@@ -3,19 +3,19 @@ import React, { Component } from 'react';
 import Message from './Messages'
 import InfiniteScroll from 'react-infinite-scroller';
 
-import {timeLabel} from '../utils'
+import { timeLabel } from '../utils'
 
 class MessageList extends Component {
   state = {
     onlyOnce: false,
-    messageList:[]
+    messageList: []
   }
 
-  static defaultProps ={
+  static defaultProps = {
     messages: []
   }
   componentDidMount = () => {
-    this.messagesEnd.scrollIntoView();
+    //  this.messagesEnd.scrollIntoView();
     this.dateDelimether();
   }
 
@@ -38,11 +38,14 @@ class MessageList extends Component {
   dateDelimether = () => {
     const { messages = [] } = this.props;
 
-    const messagesWithLabels   = timeLabel(messages);
+    const messagesWithLabels = timeLabel(messages);
 
-    this.setState({ messageList: messagesWithLabels });
+    this.setState({ messageList: messagesWithLabels }, () => {
+      const objDiv = document.getElementsByClassName('sc-message-list')[0];
+      objDiv.scrollTop = objDiv.scrollHeight;
+    });
   }
-  
+
   render() {
     const {
       recipientAvatar,
@@ -55,7 +58,7 @@ class MessageList extends Component {
       useWindow
     } = this.props;
 
-    const {messageList} = this.state;
+    const { messageList } = this.state;
 
     return (
       <div className="sc-message-list" ref={el => { this.el = el; }}>
