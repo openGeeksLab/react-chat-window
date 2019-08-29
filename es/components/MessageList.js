@@ -45,12 +45,15 @@ var MessageList = (_temp2 = _class = function (_Component) {
 
       var index = getLastMessageIndex(messages);
 
-      if (index > lastConsumedMessage) {
+      console.log('lastConsumedMessage', lastConsumedMessage);
+      console.log('index', index);
+      if (index && index > lastConsumedMessage) {
         newState.lastConsumedMessage = index;
       }
 
       _this.setState(_extends({}, newState), function () {
         if (newState.lastConsumedMessage) {
+          console.log('newState.lastConsumedMessage', newState.lastConsumedMessage);
           var objDiv = document.getElementsByClassName('sc-message-list')[0];
           objDiv.scrollTop = objDiv.scrollHeight;
         }
@@ -90,9 +93,7 @@ var MessageList = (_temp2 = _class = function (_Component) {
 
     return React.createElement(
       'div',
-      { className: 'sc-message-list', ref: function ref(el) {
-          _this2.el = el;
-        } },
+      { className: 'sc-message-list' },
       React.createElement(
         InfiniteScroll,
         {

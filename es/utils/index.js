@@ -54,7 +54,7 @@ export var timeLabel = function timeLabel() {
 };
 
 export var getLastMessageIndex = function getLastMessageIndex(messageList) {
-    if (messageList.length === 0) return -1;
+    if (messageList.length === 0) return null;
 
     var messageLength = messageList.length - 1;
     var index = messageList[messageLength].state.index;

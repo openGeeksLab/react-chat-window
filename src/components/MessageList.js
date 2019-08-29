@@ -41,12 +41,15 @@ class MessageList extends Component {
 
     const index = getLastMessageIndex(messages);
 
-    if (index > lastConsumedMessage) {
+    console.log('lastConsumedMessage', lastConsumedMessage)
+    console.log('index', index)
+    if (index && index > lastConsumedMessage) {
       newState.lastConsumedMessage = index;
     }
 
     this.setState({ ...newState }, () => {
       if (newState.lastConsumedMessage) {
+        console.log('newState.lastConsumedMessage', newState.lastConsumedMessage)
         const objDiv = document.getElementsByClassName('sc-message-list')[0];
         objDiv.scrollTop = objDiv.scrollHeight;
       }
@@ -68,7 +71,7 @@ class MessageList extends Component {
     const { messageList } = this.state;
 
     return (
-      <div className="sc-message-list" ref={el => { this.el = el; }}>
+      <div className="sc-message-list">
         <InfiniteScroll
           pageStart={pageStart || 0}
           loadMore={loadMore}
