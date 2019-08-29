@@ -53,6 +53,8 @@ export const timeLabel = (messageList = []) => {
 }
 
 export const getLastMessageIndex = (messageList) => {
+    if (messageList.length === 0) return -1;
+
     const messageLength = messageList.length - 1;
     const { index } = messageList[messageLength].state;
     return index;
