@@ -53,6 +53,13 @@ export var timeLabel = function timeLabel() {
     return newArr;
 };
 
+export var getLastMessageIndex = function getLastMessageIndex(messageList) {
+    var messageLength = messageList.length - 1;
+    var index = messageList[messageLength].state.index;
+
+    return index;
+};
+
 var _systemObj = function _systemObj(text) {
     return {
         type: SYSTEM,

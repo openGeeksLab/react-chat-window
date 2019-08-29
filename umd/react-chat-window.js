@@ -23771,6 +23771,13 @@ var timeLabel = function timeLabel() {
     return newArr;
 };
 
+var getLastMessageIndex = function getLastMessageIndex(messageList) {
+    var messageLength = messageList.length - 1;
+    var index = messageList[messageLength].state.index;
+
+    return index;
+};
+
 var utils_systemObj = function _systemObj(text) {
     return {
         type: SYSTEM,
@@ -24016,6 +24023,8 @@ var react_infinite_scroller = __webpack_require__(4);
 var react_infinite_scroller_default = /*#__PURE__*/__webpack_require__.n(react_infinite_scroller);
 
 // CONCATENATED MODULE: ./src/components/MessageList.js
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _class, _temp2;
 
 function MessageList_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24044,21 +24053,32 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
     }
 
     return _ret = (_temp = (_this = MessageList_possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
-      onlyOnce: false,
+      lastConsumedMessage: null,
       messageList: []
     }, _this.componentDidMount = function () {
-      //  this.messagesEnd.scrollIntoView();
       _this.dateDelimether();
     }, _this.dateDelimether = function () {
+      var newState = {};
+
       var _this$props$messages = _this.props.messages,
           messages = _this$props$messages === undefined ? [] : _this$props$messages;
+      var lastConsumedMessage = _this.state.lastConsumedMessage;
 
 
       var messagesWithLabels = timeLabel(messages);
+      newState.messageList = messagesWithLabels;
 
-      _this.setState({ messageList: messagesWithLabels }, function () {
-        var objDiv = document.getElementsByClassName('sc-message-list')[0];
-        objDiv.scrollTop = objDiv.scrollHeight;
+      var index = getLastMessageIndex(messageList);
+
+      if (index > lastConsumedMessage) {
+        newState.lastConsumedMessage = index;
+      }
+
+      _this.setState(_extends({}, newState), function () {
+        if (newState.lastConsumedMessage) {
+          var objDiv = document.getElementsByClassName('sc-message-list')[0];
+          objDiv.scrollTop = objDiv.scrollHeight;
+        }
       });
     }, _temp), MessageList_possibleConstructorReturn(_this, _ret);
   }
@@ -24067,16 +24087,12 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
     var _props = this.props,
         isOpen = _props.isOpen,
         messages = _props.messages;
-    var onlyOnce = this.state.onlyOnce;
+
 
     if (prevProps.isOpen !== isOpen && isOpen) {
       this.messagesEnd.scrollIntoView();
     }
-    //TODO: work uncorrectly
-    // if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
-    //   this.messagesEnd.scrollIntoView()
-    //   this.setState({ onlyOnce: true })
-    // }
+
     if (prevProps.messages !== messages) {
       this.dateDelimether();
     }
@@ -24630,7 +24646,7 @@ var Header_Header = function (_Component) {
 
 /* harmony default export */ var components_Header = (Header_Header);
 // CONCATENATED MODULE: ./src/components/ChatWindow.js
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var ChatWindow_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function ChatWindow_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -24680,7 +24696,7 @@ var ChatWindow_ChatWindow = function (_Component) {
         imageUrl: this.props.agentProfile.imageUrl,
         onClose: this.props.onClose
       }),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_MessageList, _extends({}, this.props, {
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_MessageList, ChatWindow_extends({}, this.props, {
         recipientAvatar: recipientAvatar,
         messages: messageList,
         isOpen: this.props.isOpen,
