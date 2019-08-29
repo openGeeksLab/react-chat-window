@@ -40,13 +40,8 @@ var MessageList = (_temp2 = _class = function (_Component) {
       var lastConsumedMessage = _this.state.lastConsumedMessage;
 
 
-      var messagesWithLabels = timeLabel(messages);
-      newState.messageList = messagesWithLabels;
-
       var index = getLastMessageIndex(messages);
 
-      console.log('lastConsumedMessage', lastConsumedMessage);
-      console.log('index', index);
       if (index && index > lastConsumedMessage) {
         newState.lastConsumedMessage = index;
       }
@@ -87,8 +82,8 @@ var MessageList = (_temp2 = _class = function (_Component) {
         initialLoad = _props2.initialLoad,
         threshold = _props2.threshold,
         hasMore = _props2.hasMore,
-        useWindow = _props2.useWindow;
-    var messageList = this.state.messageList;
+        useWindow = _props2.useWindow,
+        messageList = _props2.messageList;
 
 
     return React.createElement(
@@ -113,12 +108,11 @@ var MessageList = (_temp2 = _class = function (_Component) {
             React.createElement('div', { className: 'rect4' })
           )
         },
-        messageList.map(function (message) {
-          console.log('message', message);
+        messageList.map(function (message, i) {
           return React.createElement(Message, {
             recipientAvatar: recipientAvatar,
             message: message,
-            key: message.state.sid });
+            key: i });
         }),
         React.createElement('div', { style: { float: "left", clear: "both" },
           ref: function ref(el) {

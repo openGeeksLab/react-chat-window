@@ -23,7 +23,7 @@ export const timeLabel = (messageList = []) => {
 
     const { 0: firstMessage } = messageList;
 
-    firstMessage.showText = _systemObj(_getTimestamp(firstMessage.state.timestamp));
+    newArr.push(_systemObj(_getTimestamp(firstMessage.state.timestamp)))
     newArr.push(firstMessage);
 
     let lastSavedDate = firstMessage.state.timestamp;
@@ -43,15 +43,17 @@ export const timeLabel = (messageList = []) => {
 
         const showText = _getTimestamp(timestamp);
 
-        element.showText = _systemObj(showText)
+
+        newArr.push(_systemObj(showText))
         newArr.push(element);
+
     }
 
     return newArr;
 }
 
 export const getLastMessageIndex = (messageList) => {
-    if (messageList.length === 0) return null;
+    if (messageList.length === 0) return -1;
 
     const messageLength = messageList.length - 1;
     const { index } = messageList[messageLength].state;

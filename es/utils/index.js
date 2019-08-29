@@ -26,7 +26,7 @@ export var timeLabel = function timeLabel() {
     var firstMessage = messageList[0];
 
 
-    firstMessage.showText = _systemObj(_getTimestamp(firstMessage.state.timestamp));
+    newArr.push(_systemObj(_getTimestamp(firstMessage.state.timestamp)));
     newArr.push(firstMessage);
 
     var lastSavedDate = firstMessage.state.timestamp;
@@ -46,7 +46,7 @@ export var timeLabel = function timeLabel() {
 
         var showText = _getTimestamp(timestamp);
 
-        element.showText = _systemObj(showText);
+        newArr.push(_systemObj(showText));
         newArr.push(element);
     }
 
@@ -54,7 +54,7 @@ export var timeLabel = function timeLabel() {
 };
 
 export var getLastMessageIndex = function getLastMessageIndex(messageList) {
-    if (messageList.length === 0) return null;
+    if (messageList.length === 0) return -1;
 
     var messageLength = messageList.length - 1;
     var index = messageList[messageLength].state.index;

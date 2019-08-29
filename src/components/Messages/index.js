@@ -8,17 +8,15 @@ import { SYSTEM } from '../../constants';
 
 class Message extends Component {
   _renderMessageOfType(type) {
-    console.log('type', type)
     switch (type) {
       case 'text':
-        return (<div>
-          {this.props.message.showText && <SystemMessage {...this.props.message.showText} />}
-          <TextMessage {...this.props.message} />
-        </div>);
+        return <TextMessage {...this.props.message} />
       case 'emoji':
         return <EmojiMessage {...this.props.message} />
       case 'file':
         return <FileMessage {...this.props.message} />
+      case 'system':
+        return <SystemMessage {...this.props.message} />
       default:
         console.error(`Attempting to load message with unsupported file type '${type}'`)
     }
@@ -34,9 +32,9 @@ class Message extends Component {
     return (
       <div className="sc-message">
         <div className={contentClassList.join(" ")}>
-          <div className="sc-message--avatar" style={{
+          {message.type !== SYSTEM && <div className="sc-message--avatar" style={{
             backgroundImage: `url(${recipientAvatar || chatIconUrl})`
-          }}></div>
+          }}></div>}
           {this._renderMessageOfType(this.props.message.type)}
         </div>
       </div>)

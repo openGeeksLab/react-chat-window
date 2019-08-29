@@ -36,13 +36,9 @@ class MessageList extends Component {
     const { messages = [] } = this.props;
     const { lastConsumedMessage } = this.state;
 
-    const messagesWithLabels = timeLabel(messages);
-    newState.messageList = messagesWithLabels;
 
     const index = getLastMessageIndex(messages);
 
-    console.log('lastConsumedMessage', lastConsumedMessage)
-    console.log('index', index)
     if (index && index > lastConsumedMessage) {
       newState.lastConsumedMessage = index;
     }
@@ -65,11 +61,9 @@ class MessageList extends Component {
       initialLoad,
       threshold,
       hasMore,
-      useWindow
+      useWindow,
+      messageList
     } = this.props;
-
-    const { messageList } = this.state;
-
 
     return (
       <div className="sc-message-list">
@@ -88,12 +82,11 @@ class MessageList extends Component {
             <div className="rect4"></div>
           </div>}
         >
-          {messageList.map((message) => {
-            console.log('message', message)
+          {messageList.map((message, i) => {
             return <Message
               recipientAvatar={recipientAvatar}
               message={message}
-              key={message.state.sid} />
+              key={i} />
           })}
           <div style={{ float: "left", clear: "both" }}
             ref={(el) => { this.messagesEnd = el; }}>

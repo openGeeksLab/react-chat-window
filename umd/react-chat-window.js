@@ -23744,7 +23744,7 @@ var timeLabel = function timeLabel() {
     var firstMessage = messageList[0];
 
 
-    firstMessage.showText = utils_systemObj(_getTimestamp(firstMessage.state.timestamp));
+    newArr.push(utils_systemObj(_getTimestamp(firstMessage.state.timestamp)));
     newArr.push(firstMessage);
 
     var lastSavedDate = firstMessage.state.timestamp;
@@ -23764,7 +23764,7 @@ var timeLabel = function timeLabel() {
 
         var showText = _getTimestamp(timestamp);
 
-        element.showText = utils_systemObj(showText);
+        newArr.push(utils_systemObj(showText));
         newArr.push(element);
     }
 
@@ -23772,7 +23772,7 @@ var timeLabel = function timeLabel() {
 };
 
 var getLastMessageIndex = function getLastMessageIndex(messageList) {
-    if (messageList.length === 0) return null;
+    if (messageList.length === 0) return -1;
 
     var messageLength = messageList.length - 1;
     var index = messageList[messageLength].state.index;
@@ -23981,19 +23981,15 @@ var Messages_Message = function (_Component) {
   }
 
   Message.prototype._renderMessageOfType = function _renderMessageOfType(type) {
-    console.log('type', type);
     switch (type) {
       case 'text':
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          'div',
-          null,
-          this.props.message.showText && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SystemMessage, this.props.message.showText),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_TextMessage, this.props.message)
-        );
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_TextMessage, this.props.message);
       case 'emoji':
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_EmojiMessage, this.props.message);
       case 'file':
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages_FileMessage, this.props.message);
+      case 'system':
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SystemMessage, this.props.message);
       default:
         console.error('Attempting to load message with unsupported file type \'' + type + '\'');
     }
@@ -24012,7 +24008,7 @@ var Messages_Message = function (_Component) {
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         'div',
         { className: contentClassList.join(" ") },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'sc-message--avatar', style: {
+        message.type !== SYSTEM && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'sc-message--avatar', style: {
             backgroundImage: 'url(' + (recipientAvatar || chat_icon_default.a) + ')'
           } }),
         this._renderMessageOfType(this.props.message.type)
@@ -24071,13 +24067,8 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
       var lastConsumedMessage = _this.state.lastConsumedMessage;
 
 
-      var messagesWithLabels = timeLabel(messages);
-      newState.messageList = messagesWithLabels;
-
       var index = getLastMessageIndex(messages);
 
-      console.log('lastConsumedMessage', lastConsumedMessage);
-      console.log('index', index);
       if (index && index > lastConsumedMessage) {
         newState.lastConsumedMessage = index;
       }
@@ -24118,8 +24109,8 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
         initialLoad = _props2.initialLoad,
         threshold = _props2.threshold,
         hasMore = _props2.hasMore,
-        useWindow = _props2.useWindow;
-    var messageList = this.state.messageList;
+        useWindow = _props2.useWindow,
+        messageList = _props2.messageList;
 
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -24144,12 +24135,11 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect4' })
           )
         },
-        messageList.map(function (message) {
-          console.log('message', message);
+        messageList.map(function (message, i) {
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, {
             recipientAvatar: recipientAvatar,
             message: message,
-            key: message.state.sid });
+            key: i });
         }),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { style: { float: "left", clear: "both" },
           ref: function ref(el) {

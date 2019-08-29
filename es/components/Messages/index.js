@@ -22,19 +22,15 @@ var Message = function (_Component) {
   }
 
   Message.prototype._renderMessageOfType = function _renderMessageOfType(type) {
-    console.log('type', type);
     switch (type) {
       case 'text':
-        return React.createElement(
-          'div',
-          null,
-          this.props.message.showText && React.createElement(SystemMessage, this.props.message.showText),
-          React.createElement(TextMessage, this.props.message)
-        );
+        return React.createElement(TextMessage, this.props.message);
       case 'emoji':
         return React.createElement(EmojiMessage, this.props.message);
       case 'file':
         return React.createElement(FileMessage, this.props.message);
+      case 'system':
+        return React.createElement(SystemMessage, this.props.message);
       default:
         console.error('Attempting to load message with unsupported file type \'' + type + '\'');
     }
@@ -53,7 +49,7 @@ var Message = function (_Component) {
       React.createElement(
         'div',
         { className: contentClassList.join(" ") },
-        React.createElement('div', { className: 'sc-message--avatar', style: {
+        message.type !== SYSTEM && React.createElement('div', { className: 'sc-message--avatar', style: {
             backgroundImage: 'url(' + (recipientAvatar || chatIconUrl) + ')'
           } }),
         this._renderMessageOfType(this.props.message.type)
