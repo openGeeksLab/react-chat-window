@@ -39,7 +39,7 @@ class MessageList extends Component {
     const messagesWithLabels = timeLabel(messages);
     newState.messageList = messagesWithLabels;
 
-    const index = getLastMessageIndex(messageList);
+    const index = getLastMessageIndex(messages);
 
     if (index > lastConsumedMessage) {
       newState.lastConsumedMessage = index;

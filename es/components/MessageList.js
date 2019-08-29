@@ -43,7 +43,7 @@ var MessageList = (_temp2 = _class = function (_Component) {
       var messagesWithLabels = timeLabel(messages);
       newState.messageList = messagesWithLabels;
 
-      var index = getLastMessageIndex(messageList);
+      var index = getLastMessageIndex(messages);
 
       if (index > lastConsumedMessage) {
         newState.lastConsumedMessage = index;
