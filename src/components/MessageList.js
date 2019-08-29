@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import Message from './Messages'
 import InfiniteScroll from 'react-infinite-scroller';
 
-import { timeLabel } from '../utils'
+import { timeLabel, getLastMessageIndex } from '../utils'
 
 class MessageList extends Component {
   state = {
-    onlyOnce: false,
+    lastConsumedMessage: null,
     messageList: []
   }
 
@@ -15,34 +15,41 @@ class MessageList extends Component {
     messages: []
   }
   componentDidMount = () => {
-    //  this.messagesEnd.scrollIntoView();
     this.dateDelimether();
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { isOpen, messages } = this.props;
-    const { onlyOnce } = this.state;
+
     if ((prevProps.isOpen !== isOpen && isOpen)) {
-      this.messagesEnd.scrollIntoView()
+      this.messagesEnd.scrollIntoView();
     }
-    //TODO: work uncorrectly
-    // if ((prevProps.messages !== messages && messages > 0) || !onlyOnce) {
-    //   this.messagesEnd.scrollIntoView()
-    //   this.setState({ onlyOnce: true })
-    // }
+
     if (prevProps.messages !== messages) {
       this.dateDelimether();
     }
   }
 
   dateDelimether = () => {
+    const newState = {};
+
     const { messages = [] } = this.props;
+    const { lastConsumedMessage } = this.state;
 
     const messagesWithLabels = timeLabel(messages);
+    newState.messageList = messagesWithLabels;
 
-    this.setState({ messageList: messagesWithLabels }, () => {
-      const objDiv = document.getElementsByClassName('sc-message-list')[0];
-      objDiv.scrollTop = objDiv.scrollHeight;
+    const index = getLastMessageIndex(messageList);
+
+    if (index > lastConsumedMessage) {
+      newState.lastConsumedMessage = index;
+    }
+
+    this.setState({ ...newState }, () => {
+      if (newState.lastConsumedMessage) {
+        const objDiv = document.getElementsByClassName('sc-message-list')[0];
+        objDiv.scrollTop = objDiv.scrollHeight;
+      }
     });
   }
 
