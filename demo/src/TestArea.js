@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class TestArea extends Component {
   render () {
@@ -11,17 +11,30 @@ class TestArea extends Component {
           </div>
         </div>
         <form className="demo-test-area" onSubmit={(e)=> {
-            e.preventDefault();
-            this.props.onMessage(this.textArea.value);
-            this.textArea.value = '';
-          }}>
+          e.preventDefault();
+          this.props.onMessage(this.textArea1.value, 1);
+          this.textArea1.value = '';
+        }}>
           <div className="demo-test-area--preamble">Test the chat window by sending a message:</div>
           <textarea
-            ref={(e) => { this.textArea = e; }}
+            ref={(e) => { this.textArea1 = e; }}
             className="demo-test-area--text"
             placeholder="Write a test message...."
           />
-          <button className="demo-test-area--button"> Send Message! </button>
+          <button className="demo-test-area--button green"> Send Message (first user) </button>
+        </form>
+        <form className="demo-test-area" onSubmit={(e)=> {
+          e.preventDefault();
+          this.props.onMessage(this.textArea2.value, 2);
+          this.textArea2.value = '';
+        }}>
+          <div className="demo-test-area--preamble">Test the chat window by sending a message:</div>
+          <textarea
+            ref={(e) => { this.textArea2 = e; }}
+            className="demo-test-area--text"
+            placeholder="Write a test message...."
+          />
+          <button className="demo-test-area--button"> Send Message (second user) </button>
         </form>
         <p className="demo-test-area--info">
           react-chat-window is a chat window that allows you to build and add custom live chat to your sites. It includes only the react chat widget. There is no backend, and no communication system baked in.
@@ -30,8 +43,8 @@ class TestArea extends Component {
           Usage instructions for react-chat-window are <a href="https://github.com/kingofthestack/react-chat-window">on Github</a>.
         </p>
       </div>
-    )
+    );
   }
 }
 
-export default TestArea
+export default TestArea;

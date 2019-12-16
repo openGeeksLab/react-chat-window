@@ -14,6 +14,7 @@ class MessageList extends Component {
   static defaultProps = {
     messages: []
   }
+
   componentDidMount = () => {
     this.dateDelimether();
   }
@@ -49,11 +50,33 @@ class MessageList extends Component {
         objDiv.scrollTop = objDiv.scrollHeight;
       }
     });
-  }
+  };
+
+  renderSpinner = () => (
+    <div className="spinner" key={0}>
+      <div className="rect1"/>
+      <div className="rect2"/>
+      <div className="rect3"/>
+      <div className="rect4"/>
+    </div>
+  );
+
+  getAvatar = (messageData) => {
+    const { state } = messageData;
+    const {
+      recipientAvatar,
+      avatars,
+    } = this.props;
+
+    if (state && state.author && avatars && avatars[state.author]) {
+      return avatars[state.author];
+    }
+
+    return recipientAvatar;
+  };
 
   render() {
     const {
-      recipientAvatar,
       pageStart,
       loadMore,
       isReverse,
@@ -61,7 +84,7 @@ class MessageList extends Component {
       threshold,
       hasMore,
       useWindow,
-      messageList
+      messageList,
     } = this.props;
 
     return (
@@ -74,28 +97,24 @@ class MessageList extends Component {
           threshold={threshold}
           hasMore={hasMore}
           useWindow={useWindow}
-          loader={<div className="spinner" key={0}>
-            <div className="rect1"></div>
-            <div className="rect2"></div>
-            <div className="rect3"></div>
-            <div className="rect4"></div>
-          </div>}
+          loader={this.renderSpinner()}
         >
-          {messageList.map((message, i) => {
-            return <Message
-              recipientAvatar={recipientAvatar}
+          {messageList.map((message, i) => (
+            <Message
+              recipientAvatar={this.getAvatar(message)}
               message={message}
-              key={i} />
-          })}
-          <div style={{ float: "left", clear: "both" }}
-            ref={(el) => { this.messagesEnd = el; }}>
-          </div>
+              key={i}
+            />
+          ))}
+          <div style={{ float: "left", clear: "both" }} ref={(el) => { this.messagesEnd = el; }} />
         </InfiniteScroll>
-      </div>)
+      </div>
+    );
   }
 }
 
 MessageList.propTypes = {
+  avatars: PropTypes.object,
   pageStart: PropTypes.number,
   loadMore: PropTypes.func.isRequired,
   isReverse: PropTypes.bool.isRequired,

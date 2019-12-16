@@ -78,6 +78,7 @@ const MessageCount = (props) => {
 
 Launcher.propTypes = {
   onMessageWasReceived: PropTypes.func,
+  avatars: PropTypes.object,
   onMessageWasSent: PropTypes.func,
   newMessagesCount: PropTypes.number,
   isOpen: PropTypes.bool,

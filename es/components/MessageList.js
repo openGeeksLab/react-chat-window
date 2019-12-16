@@ -52,6 +52,27 @@ var MessageList = (_temp2 = _class = function (_Component) {
           objDiv.scrollTop = objDiv.scrollHeight;
         }
       });
+    }, _this.renderSpinner = function () {
+      return React.createElement(
+        'div',
+        { className: 'spinner', key: 0 },
+        React.createElement('div', { className: 'rect1' }),
+        React.createElement('div', { className: 'rect2' }),
+        React.createElement('div', { className: 'rect3' }),
+        React.createElement('div', { className: 'rect4' })
+      );
+    }, _this.getAvatar = function (messageData) {
+      var state = messageData.state;
+      var _this$props = _this.props,
+          recipientAvatar = _this$props.recipientAvatar,
+          avatars = _this$props.avatars;
+
+
+      if (state && state.author && avatars && avatars[state.author]) {
+        return avatars[state.author];
+      }
+
+      return recipientAvatar;
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -74,7 +95,6 @@ var MessageList = (_temp2 = _class = function (_Component) {
     var _this2 = this;
 
     var _props2 = this.props,
-        recipientAvatar = _props2.recipientAvatar,
         pageStart = _props2.pageStart,
         loadMore = _props2.loadMore,
         isReverse = _props2.isReverse,
@@ -98,23 +118,16 @@ var MessageList = (_temp2 = _class = function (_Component) {
           threshold: threshold,
           hasMore: hasMore,
           useWindow: useWindow,
-          loader: React.createElement(
-            'div',
-            { className: 'spinner', key: 0 },
-            React.createElement('div', { className: 'rect1' }),
-            React.createElement('div', { className: 'rect2' }),
-            React.createElement('div', { className: 'rect3' }),
-            React.createElement('div', { className: 'rect4' })
-          )
+          loader: this.renderSpinner()
         },
         messageList.map(function (message, i) {
           return React.createElement(Message, {
-            recipientAvatar: recipientAvatar,
+            recipientAvatar: _this2.getAvatar(message),
             message: message,
-            key: i });
+            key: i
+          });
         }),
-        React.createElement('div', { style: { float: "left", clear: "both" },
-          ref: function ref(el) {
+        React.createElement('div', { style: { float: "left", clear: "both" }, ref: function ref(el) {
             _this2.messagesEnd = el;
           } })
       )
@@ -128,6 +141,7 @@ var MessageList = (_temp2 = _class = function (_Component) {
 
 
 MessageList.propTypes = process.env.NODE_ENV !== "production" ? {
+  avatars: PropTypes.object,
   pageStart: PropTypes.number,
   loadMore: PropTypes.func.isRequired,
   isReverse: PropTypes.bool.isRequired,

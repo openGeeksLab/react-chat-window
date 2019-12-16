@@ -96,6 +96,7 @@ var MessageCount = function MessageCount(props) {
 
 Launcher.propTypes = process.env.NODE_ENV !== "production" ? {
   onMessageWasReceived: PropTypes.func,
+  avatars: PropTypes.object,
   onMessageWasSent: PropTypes.func,
   newMessagesCount: PropTypes.number,
   isOpen: PropTypes.bool,

@@ -13,7 +13,7 @@
   color: #516996;
   font-weight: 600;
   font-size: 28px;
- }
+}
 
 .demo-test-area--title-sub {
   color: #4e8cff;
@@ -57,6 +57,14 @@
 
 .demo-test-area--button:hover {
   background: #4883f1;
+}
+
+.demo-test-area--button.green {
+  background: #25b727;
+}
+
+.demo-test-area--button.green:hover {
+  background: #23b125;
 }
 
 .demo-test-area--info {

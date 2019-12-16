@@ -20388,7 +20388,9 @@ module.exports = function (opts) {
           '\\"(?:(?!' + re.src_ZCc + '|["]).)+\\"|' +
           "\\'(?:(?!" + re.src_ZCc + "|[']).)+\\'|" +
           "\\'(?=" + re.src_pseudo_letter + '|[-]).|' +  // allow `I'm_king` if no pair found
-          '\\.{2,3}[a-zA-Z0-9%/]|' + // github has ... in commit range links. Restrict to
+          '\\.{2,4}[a-zA-Z0-9%/]|' + // github has ... in commit range links,
+                                     // google has .... in links (issue #66)
+                                     // Restrict to
                                      // - english
                                      // - percent-encoded
                                      // - parts of file path
@@ -20406,9 +20408,11 @@ module.exports = function (opts) {
       '|\\/' +
     ')?';
 
+  // Allow anything in markdown spec, forbid quote (") at the first position
+  // because emails enclosed in quotes are far more common
   re.src_email_name =
 
-    '[\\-;:&=\\+\\$,\\"\\.a-zA-Z0-9_]+';
+    '[\\-;:&=\\+\\$,\\.a-zA-Z0-9_][\\-;:&=\\+\\$,\\"\\.a-zA-Z0-9_]*';
 
   re.src_xn =
 
@@ -20488,7 +20492,8 @@ module.exports = function (opts) {
 
   re.tpl_email_fuzzy =
 
-      '(^|' + text_separators + '|\\(|' + re.src_ZCc + ')(' + re.src_email_name + '@' + re.tpl_host_fuzzy_strict + ')';
+      '(^|' + text_separators + '|"|\\(|' + re.src_ZCc + ')' +
+      '(' + re.src_email_name + '@' + re.tpl_host_fuzzy_strict + ')';
 
   re.tpl_link_fuzzy =
       // Fuzzy link can't be prepended with .:/\- and non punctuation.
@@ -20551,7 +20556,6 @@ module.exports = [
   "accountant",
   "accountants",
   "aco",
-  "active",
   "actor",
   "ad",
   "adac",
@@ -20681,7 +20685,6 @@ module.exports = [
   "bj",
   "black",
   "blackfriday",
-  "blanco",
   "blockbuster",
   "blog",
   "bloomberg",
@@ -20690,7 +20693,6 @@ module.exports = [
   "bms",
   "bmw",
   "bn",
-  "bnl",
   "bnpparibas",
   "bo",
   "boats",
@@ -20749,7 +20751,6 @@ module.exports = [
   "career",
   "careers",
   "cars",
-  "cartier",
   "casa",
   "case",
   "caseih",
@@ -20775,13 +20776,13 @@ module.exports = [
   "ch",
   "chanel",
   "channel",
+  "charity",
   "chase",
   "chat",
   "cheap",
   "chintai",
   "christmas",
   "chrome",
-  "chrysler",
   "church",
   "ci",
   "cipriani",
@@ -20833,6 +20834,7 @@ module.exports = [
   "coupon",
   "coupons",
   "courses",
+  "cpa",
   "cr",
   "credit",
   "creditcard",
@@ -20894,9 +20896,7 @@ module.exports = [
   "do",
   "docs",
   "doctor",
-  "dodge",
   "dog",
-  "doha",
   "domains",
   "dot",
   "download",
@@ -20905,7 +20905,6 @@ module.exports = [
   "dubai",
   "duck",
   "dunlop",
-  "duns",
   "dupont",
   "durban",
   "dvag",
@@ -20926,7 +20925,6 @@ module.exports = [
   "engineer",
   "engineering",
   "enterprises",
-  "epost",
   "epson",
   "equipment",
   "er",
@@ -20942,7 +20940,6 @@ module.exports = [
   "eurovision",
   "eus",
   "events",
-  "everbank",
   "exchange",
   "expert",
   "exposed",
@@ -21022,6 +21019,7 @@ module.exports = [
   "games",
   "gap",
   "garden",
+  "gay",
   "gb",
   "gbiz",
   "gd",
@@ -21057,7 +21055,6 @@ module.exports = [
   "goldpoint",
   "golf",
   "goo",
-  "goodhands",
   "goodyear",
   "goog",
   "google",
@@ -21115,7 +21112,6 @@ module.exports = [
   "homes",
   "homesense",
   "honda",
-  "honeywell",
   "horse",
   "hospital",
   "host",
@@ -21149,6 +21145,7 @@ module.exports = [
   "immo",
   "immobilien",
   "in",
+  "inc",
   "industries",
   "infiniti",
   "info",
@@ -21168,7 +21165,6 @@ module.exports = [
   "ir",
   "irish",
   "is",
-  "iselect",
   "ismaili",
   "ist",
   "istanbul",
@@ -21176,7 +21172,6 @@ module.exports = [
   "itau",
   "itv",
   "iveco",
-  "iwc",
   "jaguar",
   "java",
   "jcb",
@@ -21186,7 +21181,6 @@ module.exports = [
   "jetzt",
   "jewelry",
   "jio",
-  "jlc",
   "jll",
   "jm",
   "jmp",
@@ -21235,12 +21229,10 @@ module.exports = [
   "kz",
   "la",
   "lacaixa",
-  "ladbrokes",
   "lamborghini",
   "lamer",
   "lancaster",
   "lancia",
-  "lancome",
   "land",
   "landrover",
   "lanxess",
@@ -21334,7 +21326,6 @@ module.exports = [
   "memorial",
   "men",
   "menu",
-  "meo",
   "merckmsd",
   "metlife",
   "mg",
@@ -21356,7 +21347,6 @@ module.exports = [
   "mo",
   "mobi",
   "mobile",
-  "mobily",
   "moda",
   "moe",
   "moi",
@@ -21364,7 +21354,6 @@ module.exports = [
   "monash",
   "money",
   "monster",
-  "mopar",
   "mormon",
   "mortgage",
   "moscow",
@@ -21470,7 +21459,6 @@ module.exports = [
   "pa",
   "page",
   "panasonic",
-  "panerai",
   "paris",
   "pars",
   "partners",
@@ -21493,7 +21481,6 @@ module.exports = [
   "photography",
   "photos",
   "physio",
-  "piaget",
   "pics",
   "pictet",
   "pictures",
@@ -21609,7 +21596,6 @@ module.exports = [
   "sandvikcoromant",
   "sanofi",
   "sap",
-  "sapo",
   "sarl",
   "sas",
   "save",
@@ -21691,21 +21677,18 @@ module.exports = [
   "sony",
   "soy",
   "space",
-  "spiegel",
   "sport",
   "spot",
   "spreadbetting",
   "sr",
   "srl",
-  "srt",
+  "ss",
   "st",
   "stada",
   "staples",
   "star",
-  "starhub",
   "statebank",
   "statefarm",
-  "statoil",
   "stc",
   "stcgroup",
   "stockholm",
@@ -21751,7 +21734,6 @@ module.exports = [
   "tech",
   "technology",
   "tel",
-  "telecity",
   "telefonica",
   "temasek",
   "tennis",
@@ -21812,7 +21794,6 @@ module.exports = [
   "ua",
   "ubank",
   "ubs",
-  "uconnect",
   "ug",
   "uk",
   "unicom",
@@ -21846,7 +21827,6 @@ module.exports = [
   "virgin",
   "visa",
   "vision",
-  "vista",
   "vistaprint",
   "viva",
   "vivo",
@@ -21866,7 +21846,6 @@ module.exports = [
   "walter",
   "wang",
   "wanggou",
-  "warman",
   "watch",
   "watches",
   "weather",
@@ -21994,9 +21973,9 @@ module.exports = [
   "اتصالات", // xn--mgbaakc7dvf
   "امارات", // xn--mgbaam7a8h
   "بازار", // xn--mgbab2bd
+  "موريتانيا", // xn--mgbah1a3hjkrd
   "پاکستان", // xn--mgbai9azgqp6j
   "الاردن", // xn--mgbayh7gpa
-  "موبايلي", // xn--mgbb9fbpob
   "بارت", // xn--mgbbh1a
   "بھارت", // xn--mgbbh1a71e
   "المغرب", // xn--mgbc0a9azcg
@@ -22028,6 +22007,7 @@ module.exports = [
   "大拿", // xn--pssy2u
   "みんな", // xn--q9jyb4c
   "グーグル", // xn--qcka1pmc
+  "ευ", // xn--qxa6a
   "ελ", // xn--qxam
   "世界", // xn--rhqv96g
   "書籍", // xn--rovu88b
@@ -22053,7 +22033,6 @@ module.exports = [
   "新加坡", // xn--yfro4i67o
   "فلسطين", // xn--ygbi2ammx
   "政务", // xn--zfr164b
-  "xperia",
   "xxx",
   "xyz",
   "yachts",
@@ -22073,7 +22052,6 @@ module.exports = [
   "zara",
   "zero",
   "zip",
-  "zippo",
   "zm",
   "zone",
   "zuerich",
@@ -24079,6 +24057,27 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
           objDiv.scrollTop = objDiv.scrollHeight;
         }
       });
+    }, _this.renderSpinner = function () {
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        'div',
+        { className: 'spinner', key: 0 },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect1' }),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect2' }),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect3' }),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect4' })
+      );
+    }, _this.getAvatar = function (messageData) {
+      var state = messageData.state;
+      var _this$props = _this.props,
+          recipientAvatar = _this$props.recipientAvatar,
+          avatars = _this$props.avatars;
+
+
+      if (state && state.author && avatars && avatars[state.author]) {
+        return avatars[state.author];
+      }
+
+      return recipientAvatar;
     }, _temp), MessageList_possibleConstructorReturn(_this, _ret);
   }
 
@@ -24101,7 +24100,6 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
     var _this2 = this;
 
     var _props2 = this.props,
-        recipientAvatar = _props2.recipientAvatar,
         pageStart = _props2.pageStart,
         loadMore = _props2.loadMore,
         isReverse = _props2.isReverse,
@@ -24125,23 +24123,16 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
           threshold: threshold,
           hasMore: hasMore,
           useWindow: useWindow,
-          loader: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            'div',
-            { className: 'spinner', key: 0 },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect1' }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect2' }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect3' }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { className: 'rect4' })
-          )
+          loader: this.renderSpinner()
         },
         messageList.map(function (message, i) {
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Messages, {
-            recipientAvatar: recipientAvatar,
+            recipientAvatar: _this2.getAvatar(message),
             message: message,
-            key: i });
+            key: i
+          });
         }),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { style: { float: "left", clear: "both" },
-          ref: function ref(el) {
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement('div', { style: { float: "left", clear: "both" }, ref: function ref(el) {
             _this2.messagesEnd = el;
           } })
       )
@@ -24155,6 +24146,7 @@ var MessageList_MessageList = (_temp2 = _class = function (_Component) {
 
 
 MessageList_MessageList.propTypes = {
+  avatars: prop_types_default.a.object,
   pageStart: prop_types_default.a.number,
   loadMore: prop_types_default.a.func.isRequired,
   isReverse: prop_types_default.a.bool.isRequired,
@@ -24711,6 +24703,7 @@ var ChatWindow_ChatWindow = function (_Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
 
 ChatWindow_ChatWindow.propTypes = {
+  avatars: prop_types_default.a.object,
   agentProfile: prop_types_default.a.object.isRequired,
   isOpen: prop_types_default.a.bool.isRequired,
   onClose: prop_types_default.a.func.isRequired,
@@ -24827,6 +24820,7 @@ var Launcher_MessageCount = function MessageCount(props) {
 
 Launcher_Launcher.propTypes = {
   onMessageWasReceived: prop_types_default.a.func,
+  avatars: prop_types_default.a.object,
   onMessageWasSent: prop_types_default.a.func,
   newMessagesCount: prop_types_default.a.number,
   isOpen: prop_types_default.a.bool,

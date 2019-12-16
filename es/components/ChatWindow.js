@@ -66,6 +66,7 @@ var ChatWindow = function (_Component) {
 }(Component);
 
 ChatWindow.propTypes = process.env.NODE_ENV !== "production" ? {
+  avatars: PropTypes.object,
   agentProfile: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

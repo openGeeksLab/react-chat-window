@@ -6,7 +6,6 @@ import TestArea from './TestArea';
 import Header from './Header';
 import Footer from './Footer';
 import monsterImgUrl from "./../assets/monster.png";
-import Highlight from "react-highlight.js";
 import './../assets/styles'
 
 
@@ -41,7 +40,7 @@ class Demo extends Component {
     })
   }
 
-  _sendMessage(text) {
+  _sendMessage(text, author) {
     if (text.length > 0) {
       const newMessagesCount = this.state.isOpen ? this.state.newMessagesCount : this.state.newMessagesCount + 1
       this.setState({
@@ -49,7 +48,8 @@ class Demo extends Component {
         messageList: [...this.state.messageList, {
           author: 'them',
           type: 'text',
-          data: { text }
+          data: { text },
+          state: { timestamp: new Date(), author }
         }]
       })
     }
@@ -68,20 +68,33 @@ class Demo extends Component {
       <TestArea
         onMessage={this._sendMessage.bind(this)}
       />
-      {/* <ChatWindow
-        onUserInputSubmit={this._onMessageWasSent.bind(this)}
-        messageList={this.state.messageList}
-        isOpen={true}
-        displayHeader={false}
-        agentProfile={{
-          teamName: 'react-chat-window',
-          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
-        }}
-      /> */}
+      {/*<ChatWindow*/}
+        {/*onUserInputSubmit={this._onMessageWasSent.bind(this)}*/}
+        {/*messageList={this.state.messageList}*/}
+        {/*isOpen={true}*/}
+        {/*displayHeader={false}*/}
+        {/*avatars={{*/}
+          {/*1: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',*/}
+          {/*2: '/chat-icon.e0d2b748.svg',*/}
+        {/*}}*/}
+        {/*agentProfile={{*/}
+          {/*teamName: 'react-chat-window',*/}
+          {/*imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'*/}
+        {/*}}*/}
+        {/*hasMore={false}*/}
+        {/*initialLoad={false}*/}
+        {/*isReverse={true}*/}
+        {/*useWindow={false}*/}
+        {/*loadMore={() => {}}*/}
+      {/*/>*/}
       <Launcher
         agentProfile={{
           teamName: 'react-chat-window',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+        }}
+        avatars={{
+          1: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+          2: '/chat-icon.e0d2b748.svg',
         }}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
         onFilesSelected={this._onFilesSelected.bind(this)}
@@ -90,6 +103,11 @@ class Demo extends Component {
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         showEmoji
+        hasMore={false}
+        initialLoad={false}
+        isReverse={true}
+        useWindow={false}
+        loadMore={() => {}}
       />
       <img className="demo-monster-img" src={monsterImgUrl} />
       <Footer />
@@ -97,4 +115,4 @@ class Demo extends Component {
   }
 }
 
-render(<Demo />, document.querySelector('#demo'))
+render(<Demo />, document.querySelector('#demo'));
