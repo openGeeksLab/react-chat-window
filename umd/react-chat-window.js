@@ -24677,8 +24677,6 @@ var ChatWindow_ChatWindow = function (_Component) {
     var messageList = this.props.messageList || [];
     var classList = ["sc-chat-window", this.props.isOpen ? "opened" : "closed"];
 
-    console.log('IT IS LATEST VERSION');
-
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       'div',
       { className: classList.join(' ') },

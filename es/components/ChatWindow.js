@@ -40,8 +40,6 @@ var ChatWindow = function (_Component) {
     var messageList = this.props.messageList || [];
     var classList = ["sc-chat-window", this.props.isOpen ? "opened" : "closed"];
 
-    console.log('IT IS LATEST VERSION');
-
     return React.createElement(
       'div',
       { className: classList.join(' ') },
