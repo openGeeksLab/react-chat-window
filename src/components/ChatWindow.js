@@ -27,6 +27,8 @@ class ChatWindow extends Component {
       (this.props.isOpen ? "opened" : "closed")
     ];
 
+    console.log('IT IS LATEST VERSION');
+
     return (
       <div className={classList.join(' ')}>
         {displayHeader && < Header
